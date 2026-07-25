@@ -1,0 +1,132 @@
+openapi: 3.0.3
+info:
+  title: Zubale API Documentation for External Notification Handler Product catalog API
+  version: v3
+  description: 'Overview. This document is a developer’s guide and provides the necessary information to integrate your websites and mobile apps with our Zubale API endpoints. In this document some of our API endpoints are discussed, giving their business context and some examples on how to use specific features provided by the endpoints. Basic prior knowledge on JSON, HTTPS and an understanding of software programming is assumed. Integration It''s the process to unite with your service automatically in order to provide a connection between your services and Zubale''s system to create tasks and update its statuses. It is important to note that this API is serving different customers, thus modifications to it are not feasible. If you have special requirements or needs, please talk to your Sales Account Manager to explore a custom integration. How to start with Zubale? https://en.zubale.com/ Terminology Customer: This is the company that integrates with us Client: This is the person who make an order Zubalero: The person who runs Picking and deliveries Response The Zubale API uses HTTP status codes to indicate the status of the requests. This includes successful and error responses. Success Response Codes HTTP Status Code Description 200 Request successful. 200 User created. Error Response Codes HTTP Status Code Description 500 Internal server error. 409 Format not recognized. 409 Encoding format not recognized. 404 Content not found 401 Unauthorized/Invalid token 400 Bad request.'
+  contact:
+    name: Zubale
+    url: https://developers.zubale.com/
+  x-source: Derived from the public Zubale Postman collection (developers.zubale.com)
+  x-apievangelist:
+    generated: '2026-07-21'
+    method: generated
+    source: postman/zubale-collection.json
+servers:
+- url: https://api.zubale.com
+  description: Production
+- url: https://api-cencosandbox.zubale.com
+  description: Sandbox host published in the collection
+security:
+- bearerAuth: []
+tags:
+- name: Product catalog
+paths:
+  /product-catalog/api/v1/catalog/{brand_id}:
+    post:
+      operationId: createCatalog
+      summary: Create catalog
+      tags:
+      - Product catalog
+      description: 'JSON object mass creation Based on a JSON array of products, create products massively in our service. brand_id in the path params is an integer value provided by Zubale. Note: each brand can only have 1 existing catalog, which means calling this endpoint again will overwrite your existing data, this includes all product records from all stores . Warning: if you''re integrating your stock service with us, make sure to set all products stock values to 0 . Key Value store_id Your store identifier. product_code Your product''s code (formatted as SKU, EAN, GTIN, ISBN, etc.). name Product name. brand Product brand''s name. description Product description. available Product availabilty. condition Condition of the product (new, refurbished, used). price Product base price for the previously defined store. sale_price Product price if it''s in sale, else use base price. link URL to your product''s page. image_link URL to your product''s image. department Product categorization. restricted Certain products might be restricted (like alcohol and medicines), for any other product that might not fall into this category, set this field to false.'
+      parameters:
+      - name: brand_id
+        in: path
+        required: true
+        schema:
+          type: string
+      security:
+      - bearerAuth: []
+      requestBody:
+        content:
+          application/json: {}
+      responses:
+        '200':
+          description: Successful response
+    put:
+      operationId: updateCatalog
+      summary: Update catalog
+      tags:
+      - Product catalog
+      description: Update a given list of products. This endpoint will not overwrite your existing data. Attempting to update an unexisting record won't create it, meaning that if you send a product that isn't on our database will not attempt to insert it. To make sure it exists, please refer to the Get products(s) section brand_id in the path params is an integer value provided value. "brand_id", "store_id" and "product_code" are mandatory fields. Any undeclared, empty strings, zero and null values won't be overwritten on the original record.
+      parameters:
+      - name: brand_id
+        in: path
+        required: true
+        schema:
+          type: string
+      security:
+      - bearerAuth: []
+      requestBody:
+        content:
+          application/json: {}
+      responses:
+        '200':
+          description: Successful response
+  /product-catalog/api/v1/brands/{brand_id}/products:
+    post:
+      operationId: createProduct
+      summary: Create product
+      tags:
+      - Product catalog
+      description: 'Creates an array of multiple products at once. This endpoint will not overwrite existing records, but will return products that failed to insert whenever they don''t match the expected values. Warning: if you''re integrating your stock service with us, make sure to set all products stock values to 0 .'
+      parameters:
+      - name: brand_id
+        in: path
+        required: true
+        schema:
+          type: string
+      security:
+      - bearerAuth: []
+      requestBody:
+        content:
+          application/json: {}
+      responses:
+        '200':
+          description: Successful response
+    get:
+      operationId: getProductS
+      summary: Get product(s)
+      tags:
+      - Product catalog
+      description: Get a product based on certain query parameters.
+      parameters:
+      - name: brand_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+  /product-catalog/api/v1/products:
+    put:
+      operationId: updateProduct
+      summary: Update product
+      tags:
+      - Product catalog
+      description: Updates a single product. "brandId", "storeId", and "productCode" are mandatory fields. Any undeclared, empty strings, zero and null values won't be overwritten on the original record.
+      security:
+      - bearerAuth: []
+      requestBody:
+        content:
+          application/json: {}
+      responses:
+        '200':
+          description: Successful response
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: 'OAuth2 client-credentials access token from POST /oauth2/token, sent as Authorization: Bearer <token>.'
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic (client_id:client_secret) used only against POST /oauth2/token.
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.zubale.com/oauth2/token
+          scopes: {}

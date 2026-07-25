@@ -1,0 +1,174 @@
+openapi: 3.0.3
+info:
+  title: Zubale API Documentation for External Notification Handler Picking & Delivery API API
+  version: v3
+  description: 'Overview. This document is a developer’s guide and provides the necessary information to integrate your websites and mobile apps with our Zubale API endpoints. In this document some of our API endpoints are discussed, giving their business context and some examples on how to use specific features provided by the endpoints. Basic prior knowledge on JSON, HTTPS and an understanding of software programming is assumed. Integration It''s the process to unite with your service automatically in order to provide a connection between your services and Zubale''s system to create tasks and update its statuses. It is important to note that this API is serving different customers, thus modifications to it are not feasible. If you have special requirements or needs, please talk to your Sales Account Manager to explore a custom integration. How to start with Zubale? https://en.zubale.com/ Terminology Customer: This is the company that integrates with us Client: This is the person who make an order Zubalero: The person who runs Picking and deliveries Response The Zubale API uses HTTP status codes to indicate the status of the requests. This includes successful and error responses. Success Response Codes HTTP Status Code Description 200 Request successful. 200 User created. Error Response Codes HTTP Status Code Description 500 Internal server error. 409 Format not recognized. 409 Encoding format not recognized. 404 Content not found 401 Unauthorized/Invalid token 400 Bad request.'
+  contact:
+    name: Zubale
+    url: https://developers.zubale.com/
+  x-source: Derived from the public Zubale Postman collection (developers.zubale.com)
+  x-apievangelist:
+    generated: '2026-07-21'
+    method: generated
+    source: postman/zubale-collection.json
+servers:
+- url: https://api.zubale.com
+  description: Production
+- url: https://api-cencosandbox.zubale.com
+  description: Sandbox host published in the collection
+security:
+- bearerAuth: []
+tags:
+- name: Picking & Delivery API
+paths:
+  /orders/api/pnp_e2e/jobs:
+    post:
+      operationId: createPickingDeliveryOrder
+      summary: Create Picking & Delivery Order
+      tags:
+      - Picking & Delivery API
+      description: 'Create Picking &amp; Delivery Quest At this endpoint the client will post the order with all the required information. Here you could find the attributes necessary, the structure and values to perform the process optimally. The format is JSON. Security scheme type BEARER TOKEN Staging {{BASE_URL}}/api/pnp_e2e/jobs Production {{BASE_URL}}/api/pnp_e2e/jobs Description Feed Description Datatype Required Examples Notes brand_ID Given identifier for each company integrated with Zubale String True “florida-store”, ”1021” Maximum 256 characters comment General Comments String False “generic” Maximum 256 characters contact_info.address Full address of customer''s drop off location.See format address. String True contactInfo.comments General Comments String False “generic” Maximum 256 characters contactInfo.name Full name of client String True “Pedro Perez” Maximum 256 characters contactInfo.phone_number Phone number of client. String True “+50245549959” Struct: + CC NDC SN Max 15 digits CC: Country code (1-3 Digits) NDC: National destination code (Area code) if exists SN: Suscriber number contactInfo.zip_code Zip Code of client. String True “Brazil: 01232-010” “Brazil: 01232-010” dropOffLoc'
+      security:
+      - bearerAuth: []
+      requestBody:
+        content:
+          application/json: {}
+      responses:
+        '200':
+          description: Successful response
+  /integration/notify_status:
+    post:
+      operationId: notifyStatusChange
+      summary: Notify Status Change
+      tags:
+      - Picking & Delivery API
+      description: 'Notify Status Change (Customer side) We can inform you about changes in the order status. Through a JSON format You need to provide an endpoint to which we can send notifications detailed on following table. The optional status will depend on the operational process that you carry out. PICKING STATUSES The following is a list of the statuses that we could notify: Status Description Default / Optional TASK_SCHEDULED Indicates the first state when the task was scheduled Indicates when a return occurs and the task is re-queued and it is ready to be taken or cancelled. DEFAULT TASK_ASSIGNED Indicates the moment when the Zubalero takes the order. DEFAULT PICKING_STARTED This state occurs when the zubalero takes the task and reads the instructions to start collecting the products. DEFAULT PRODUCT_ADDED Indicates the moment when Zubalero added to cart the first product. (and only for the first product) DEFAULT PRODUCT_SCANNED Indicates the moment when Zubalero scanned the first product OPTIONAL CALLED_CUSTOMER Indicates the moment when zubalero calls the client to make a replace, add or remove a product. Also this status is sent when zubalero arrives at the client´s address. OPTIONAL AT_C'
+      security: []
+      requestBody:
+        content:
+          application/json: {}
+      responses:
+        '200':
+          description: Successful response
+  /integration/scanBarCode:
+    get:
+      operationId: getProductCustomerSide
+      summary: Get Product (Customer Side)
+      tags:
+      - Picking & Delivery API
+      description: Get Product (Customer side) This is an endpoint you provide as a customer, in order for Zubale to retrieve information about a given product. The most common use case happens when a consumer requests a product replacement (product out of stock, difference in units, etc.), in which case Zubale asks you to provide us with details of the new product. Response 200OK Feed Description Datatype Required Example Notes productId Customer defined product id. internal product identifier String True “BEB_LAC_ENT” Maximum 256 characteres thumbnailUrl Public Product image URL in thumbnail format. In case of don´t have it, send empty attribute String True " https://galletasImage.com/7441001700065.jpg Maximum 256 characters imageUrl Public Product image URL. In case of don´t have it, send empty attribute String True https://galletasImage.com/7441001700065.jpg Maximum 256 characters unit Product unit (units, kg, etc.) String True “PCE” {“PCE” “KGM”} upc Product upc or SKU EAN 13. MUST TO BE THE SAME THAN ITEMID String True "978020137962” shortName Product short name it can be the same than longtName String True "Galletas para perros" Maximum 256 characters longName Product long name it can be the s
+      security: []
+      requestBody:
+        content:
+          application/json:
+            example: {}
+      responses:
+        '200':
+          description: Successful response
+  /integration/finalOrder:
+    post:
+      operationId: confirmOrder
+      summary: Confirm Order
+      tags:
+      - Picking & Delivery API
+      description: Confirm order Once the order picking has been completed, we send you the final order, so you can perform any bookkeeping, calculation or any other processing on your end. You may receive the order unchanged from what the consumer originally ordered, or it may have changed (added/replaced/deleted items), based on product availability at the store The only relevant field for you, should be each item's quantity. Be aware of new/replaced/removed items (if any). Attribute Description Required Datatype Examples Notes requestId ID that is recognizable to your operations Must to be the same than customkey True String "REQU-add90e3b-f086-439f-9e63-b25ac55b287c" Must to be the same than customkey customkey ID that is recognizable to your operations Must to be the same than requestId True String "REQU-add90e3b-f086-439f-9e63-b25ac55b287c" Must to be the same than requestID storeID ID of the store where the task is being performed. True String "123" Maximum 32 characters status Order status. Always has to be OPEN True String “OPEN” {”OPEN”} deliveryType Customer defined type of delivery. True String "DELIVERY” {“DELIVERY”} payment Payment information True Object payment.paymentMode It is the m
+      security:
+      - bearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            example:
+              address:
+                address: Luis Arias Schereiber - 345
+                addressReference: ''
+                city: Lima
+                country: PER
+                externalNumber: '345'
+                id: 0
+                internalNumber: ''
+                latitude: -12.1210855
+                longitude: -77.0104072
+                neighborhood: Miraflores
+                postalCode: '150122'
+                state: LIMA
+                street: Luis Arias Schereiber
+              comment: null - null
+              consumer:
+                id: '1342'
+                user:
+                  email: acllsis@gmail.com
+                  person:
+                    birthdate: '1969-12-31T00:00:00.000Z'
+                    contact:
+                      ext: '0'
+                      mean: 1
+                      value: '+51911111111'
+                    gender: M
+                    lastname: cenco
+                    name: prueba
+                    secondname: ''
+              contactPreferences: ''
+              customkey: v533623wofq-01
+              deliveryType: ENTREGA
+              originalOrderRequest:
+                deliveryInstructions: 'null'
+                orderDate: '2021-06-30T00:00:00.000'
+                orderRequestItems:
+                - comments: ''
+                  discount: 0
+                  itemId: '166885'
+                  product:
+                    aisle: ''
+                    imageUrl: ''
+                    longName: ''
+                    pesable: false
+                    price: 0
+                    productId: '187743000013'
+                    restricted: true
+                    shortName: ''
+                    thumbnailUrl: ''
+                    unit: un
+                    upc: '166885'
+                  quantity: 2
+                  reference: null
+                  status: PERSISTENT
+                  totalPrice: 0
+                  unitPrice: 0
+                orderShipmentCost: 0
+                orderTotalCost: 63.8
+              payment:
+                payOnDeliveryType: CARD
+                paymentMode: PAY_ON_DELIVERY
+                paymentStatus: ''
+              phone1: '+51911111111'
+              phone2: ''
+              recipient1: Aaaaaa Cccccccc
+              recipient2: ''
+              requestId: ORDER_ID
+              status: READY
+              storeId: '123'
+              timeSlot:
+                idStore: '123'
+                serviceType: 0
+                timeFrom: '2021-07-10T14:00:00.000'
+                timeTo: '2021-07-10T17:00:00.000'
+      responses:
+        '200':
+          description: Successful response
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: 'OAuth2 client-credentials access token from POST /oauth2/token, sent as Authorization: Bearer <token>.'
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic (client_id:client_secret) used only against POST /oauth2/token.
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.zubale.com/oauth2/token
+          scopes: {}

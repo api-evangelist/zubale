@@ -1,0 +1,91 @@
+openapi: 3.0.3
+info:
+  title: Zubale API Documentation for External Notification Handler Cancel tasks API
+  version: v3
+  description: 'Overview. This document is a developer’s guide and provides the necessary information to integrate your websites and mobile apps with our Zubale API endpoints. In this document some of our API endpoints are discussed, giving their business context and some examples on how to use specific features provided by the endpoints. Basic prior knowledge on JSON, HTTPS and an understanding of software programming is assumed. Integration It''s the process to unite with your service automatically in order to provide a connection between your services and Zubale''s system to create tasks and update its statuses. It is important to note that this API is serving different customers, thus modifications to it are not feasible. If you have special requirements or needs, please talk to your Sales Account Manager to explore a custom integration. How to start with Zubale? https://en.zubale.com/ Terminology Customer: This is the company that integrates with us Client: This is the person who make an order Zubalero: The person who runs Picking and deliveries Response The Zubale API uses HTTP status codes to indicate the status of the requests. This includes successful and error responses. Success Response Codes HTTP Status Code Description 200 Request successful. 200 User created. Error Response Codes HTTP Status Code Description 500 Internal server error. 409 Format not recognized. 409 Encoding format not recognized. 404 Content not found 401 Unauthorized/Invalid token 400 Bad request.'
+  contact:
+    name: Zubale
+    url: https://developers.zubale.com/
+  x-source: Derived from the public Zubale Postman collection (developers.zubale.com)
+  x-apievangelist:
+    generated: '2026-07-21'
+    method: generated
+    source: postman/zubale-collection.json
+servers:
+- url: https://api.zubale.com
+  description: Production
+- url: https://api-cencosandbox.zubale.com
+  description: Sandbox host published in the collection
+security:
+- bearerAuth: []
+tags:
+- name: Cancel tasks
+paths:
+  /orders/api/{brandId}/cancel:
+    put:
+      operationId: cancelTask
+      summary: Cancel task
+      tags:
+      - Cancel tasks
+      description: This endpoit is used to cancel an order that was previously created. When cancelling an order the process of delivery or picking and deliver will finish This API is use to both service, delivery or picking and delivery Request Atributte Description Datatype Example Note orderId Order identifier String “order_1234_4566” In picking and delivery externalOrderId = customkey In delivery externalOrderId = externalOrderId details Your cancellation reason String “Cancelled by client”, "Issues with the order" Must to send “CANCEL” Issuer The entity that sends tihs request String "Client", "Customer" Maximum 256 characteres
+      parameters:
+      - name: brandId
+        in: path
+        required: true
+        schema:
+          type: string
+      security:
+      - bearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            example:
+              orderId: '{{customer_order_id}}'
+              details: Cancellation reason
+              issuer: CLIENT
+      responses:
+        '200':
+          description: Successful response
+  /orders/api/{brand_id}/cancel:
+    put:
+      operationId: cancelTask2
+      summary: Cancel task
+      tags:
+      - Cancel tasks
+      deprecated: true
+      description: This endpoit is used to cancel an order that was previously created. When cancelling an order the process of delivery or picking and deliver will finish This API is use to both service, delivery or picking and delivery Request Atributte Description Datatype Example Note orderId Order identifier String “order_1234_4566” In picking and delivery externalOrderId = customkey In delivery externalOrderId = externalOrderId details Your cancellation reason String “Cancelled by client”, "Issues with the order" Must to send “CANCEL” Issuer The entity that sends tihs request String "Client", "Customer" Maximum 256 characteres
+      parameters:
+      - name: brand_id
+        in: path
+        required: true
+        schema:
+          type: string
+      security:
+      - bearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            example:
+              orderId: '{{customer_order_id}}'
+              details: Cancellation reason
+              issuer: CLIENT
+      responses:
+        '200':
+          description: Successful response
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: 'OAuth2 client-credentials access token from POST /oauth2/token, sent as Authorization: Bearer <token>.'
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic (client_id:client_secret) used only against POST /oauth2/token.
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.zubale.com/oauth2/token
+          scopes: {}
