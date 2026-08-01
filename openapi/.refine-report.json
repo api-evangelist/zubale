@@ -1,0 +1,28 @@
+{
+  "provider": "zubale",
+  "sources": [
+    "zubale-api-documentation-for-external-notification-handler-api-openapi.yml",
+    "zubale-cancel-tasks-api-openapi.yml",
+    "zubale-delivery-api-api-openapi.yml",
+    "zubale-external-outbound-api-openapi.yml",
+    "zubale-live-tracking-for-cencosud-api-openapi.yml",
+    "zubale-picking-delivery-api-api-openapi.yml",
+    "zubale-product-catalog-api-openapi.yml",
+    "zubale-webhook-payload-structure-for-order-notification-api-openapi.yml"
+  ],
+  "outputs": [
+    "zubale-api-documentation-for-external-notification-handler-api-openapi.yml",
+    "zubale-cancel-tasks-api-openapi.yml",
+    "zubale-delivery-api-api-openapi.yml",
+    "zubale-external-outbound-api-openapi.yml",
+    "zubale-live-tracking-for-cencosud-api-openapi.yml",
+    "zubale-picking-delivery-api-api-openapi.yml",
+    "zubale-product-catalog-api-openapi.yml",
+    "zubale-webhook-payload-structure-for-order-notification-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

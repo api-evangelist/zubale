@@ -1,0 +1,39 @@
+generated: '2026-07-21'
+method: searched
+source: https://developers.zubale.com/ (Zubale API Postman documentation)
+authentication:
+  style: oauth2-client-credentials
+  token_endpoint: POST /oauth2/token
+  grant: client_credentials
+  request_forms:
+  - HTTP Basic (client_id:client_secret) against /oauth2/token
+  - 'JSON body: {client_id, client_secret, grant_type: client_credentials}'
+  bearer: Authorization: Bearer <access_token> on all authenticated operations
+  see: authentication/zubale-authentication.yml
+idempotency:
+  supported: false
+  notes: >-
+    No idempotency-key header or param is documented. Orders carry a caller-supplied
+    requestId/orderId that acts as a business correlation id, but the API does not
+    advertise it as an idempotency guarantee.
+pagination:
+  supported: unknown
+  notes: No pagination scheme is documented for list endpoints (e.g. GET products).
+versioning:
+  scheme: uri-path + collection-version
+  current: v3
+  notes: >-
+    Order endpoints carry a version in the path (e.g. /it/api/v1/...); the developer
+    documentation is organized as "Zubale API | V3" (current) and "Zubale API | V2
+    (Deprecated)". See lifecycle/zubale-lifecycle.yml.
+error_envelope:
+  format: http-status
+  notes: Standard HTTP status codes (200/400/401/404/409/500). See errors/zubale-problem-types.yml.
+webhooks:
+  supported: true
+  notes: >-
+    Zubale pushes order status changes to a customer-provided endpoint (notify-status /
+    notify_status callbacks) and supports a configurable order-notification webhook.
+    See asyncapi/zubale-webhooks.yml.
+request_tracing:
+  notes: Callers pass requestId / orderId on order creation for correlation; no dedicated request-id response header is documented.

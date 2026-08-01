@@ -1,0 +1,68 @@
+generated: '2026-07-21'
+method: derived
+status: candidate
+source: openapi/zubale-openapi.yml
+server:
+  name: zubale
+  transport: http
+  url: null
+  notes: No official hosted/remote Zubale MCP server was found. Candidate tool list derived from the OpenAPI
+    (one tool per non-deprecated operation).
+tools:
+- name: createDeliveryOrder
+  description: Create Delivery Order
+  source_operation: openapi/zubale-openapi.yml#createDeliveryOrder
+- name: notifyStatusChangeCustomerSide
+  description: Notify Status Change (Customer side)
+  source_operation: openapi/zubale-openapi.yml#notifyStatusChangeCustomerSide
+- name: cancelTask
+  description: Cancel task
+  source_operation: openapi/zubale-openapi.yml#cancelTask
+- name: createPickingDeliveryOrder
+  description: Create Picking & Delivery Order
+  source_operation: openapi/zubale-openapi.yml#createPickingDeliveryOrder
+- name: notifyStatusChange
+  description: Notify Status Change
+  source_operation: openapi/zubale-openapi.yml#notifyStatusChange
+- name: getProductCustomerSide
+  description: Get Product (Customer Side)
+  source_operation: openapi/zubale-openapi.yml#getProductCustomerSide
+- name: confirmOrder
+  description: Confirm Order
+  source_operation: openapi/zubale-openapi.yml#confirmOrder
+- name: createCredentialToken
+  description: 1. Create Credential Token
+  source_operation: openapi/zubale-openapi.yml#createCredentialToken
+- name: createOrder
+  description: 2. Create Order
+  source_operation: openapi/zubale-openapi.yml#createOrder
+- name: updateStatusOfTheOrder
+  description: 3. Update Status of the order
+  source_operation: openapi/zubale-openapi.yml#updateStatusOfTheOrder
+- name: sendCoordinates
+  description: 4. Send Coordinates
+  source_operation: openapi/zubale-openapi.yml#sendCoordinates
+- name: createCatalog
+  description: Create catalog
+  source_operation: openapi/zubale-openapi.yml#createCatalog
+- name: updateCatalog
+  description: Update catalog
+  source_operation: openapi/zubale-openapi.yml#updateCatalog
+- name: createProduct
+  description: Create product
+  source_operation: openapi/zubale-openapi.yml#createProduct
+- name: getProductS
+  description: Get product(s)
+  source_operation: openapi/zubale-openapi.yml#getProductS
+- name: updateProduct
+  description: Update product
+  source_operation: openapi/zubale-openapi.yml#updateProduct
+- name: multipleProductCampaignCatalog
+  description: Multiple product campaign - Catalog
+  source_operation: openapi/zubale-openapi.yml#multipleProductCampaignCatalog
+- name: webhookConfiguration
+  description: Webhook Configuration
+  source_operation: openapi/zubale-openapi.yml#webhookConfiguration
+- name: sendEvent
+  description: Send Event
+  source_operation: openapi/zubale-openapi.yml#sendEvent

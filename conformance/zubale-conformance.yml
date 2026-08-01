@@ -1,0 +1,24 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/zubale-openapi.yml + https://security.zubale.com/
+standards:
+- id: oauth2
+  conforms: true
+  evidence: OAuth2 client-credentials token endpoint (/oauth2/token) issuing Bearer JWTs
+- id: oauth2-client-credentials
+  conforms: true
+  evidence: grant_type=client_credentials documented in the collection
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: Errors use plain HTTP status codes, not application/problem+json
+- id: json-api
+  conforms: false
+- id: webhooks
+  conforms: true
+  evidence: Order status-change callbacks + configurable order-notification webhook
+- id: iso-27001
+  conforms: true
+  evidence: ISO 27001 certification listed on security.zubale.com trust center
+- id: soc3
+  conforms: true
+  evidence: GCP SOC 3 report listed on security.zubale.com trust center

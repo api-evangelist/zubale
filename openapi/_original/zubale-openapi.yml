@@ -1,0 +1,718 @@
+openapi: 3.0.3
+info:
+  title: Zubale API
+  version: v3
+  description: 'Overview. This document is a developer’s guide and provides the necessary information
+    to integrate your websites and mobile apps with our Zubale API endpoints. In this document some of
+    our API endpoints are discussed, giving their business context and some examples on how to use specific
+    features provided by the endpoints. Basic prior knowledge on JSON, HTTPS and an understanding of software
+    programming is assumed. Integration It''s the process to unite with your service automatically in
+    order to provide a connection between your services and Zubale''s system to create tasks and update
+    its statuses. It is important to note that this API is serving different customers, thus modifications
+    to it are not feasible. If you have special requirements or needs, please talk to your Sales Account
+    Manager to explore a custom integration. How to start with Zubale? https://en.zubale.com/ Terminology
+    Customer: This is the company that integrates with us Client: This is the person who make an order
+    Zubalero: The person who runs Picking and deliveries Response The Zubale API uses HTTP status codes
+    to indicate the status of the requests. This includes successful and error responses. Success Response
+    Codes HTTP Status Code Description 200 Request successful. 200 User created. Error Response Codes
+    HTTP Status Code Description 500 Internal server error. 409 Format not recognized. 409 Encoding format
+    not recognized. 404 Content not found 401 Unauthorized/Invalid token 400 Bad request.'
+  contact:
+    name: Zubale
+    url: https://developers.zubale.com/
+  x-source: Derived from the public Zubale Postman collection (developers.zubale.com)
+  x-apievangelist:
+    generated: '2026-07-21'
+    method: generated
+    source: postman/zubale-collection.json
+servers:
+- url: https://api.zubale.com
+  description: Production
+- url: https://api-cencosandbox.zubale.com
+  description: Sandbox host published in the collection
+security:
+- bearerAuth: []
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: 'OAuth2 client-credentials access token from POST /oauth2/token, sent as Authorization:
+        Bearer <token>.'
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic (client_id:client_secret) used only against POST /oauth2/token.
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.zubale.com/oauth2/token
+          scopes: {}
+paths:
+  /it/api/v1/{brand_name}/pnp_delivery/jobs:
+    post:
+      operationId: createDeliveryOrder
+      summary: Create Delivery Order
+      tags:
+      - Delivery API
+      description: 'Zubale Integration process diagram Description At this endpoint the client will post
+        the order with all the required information. Here you could find the attributes necessary, the
+        structure and values to perform the process optimally. The format is JSON. Payload request structure:
+        Feed Description Datatype Required Examples Notes brandId Given identifier for each company integrated
+        with Zubale String True “florida-store”, ”1021” Maximum 256 characters comment General Comments
+        String False “generic” Maximum 256 characters contact_info.address Full address of customer''s
+        drop off location.See format address. String True contactInfo.comments General Comments String
+        False “generic” Maximum 256 characters contactInfo.name Full name of client String True “Pedro
+        Perez” Maximum 256 characters contactInfo.phone_number Phone number of client. String True “+50245549959”
+        Struct: + CC NDC SN Max 15 digits CC: Country code (1-3 Digits) NDC: National destination code
+        (Area code) if exists SN: Suscriber number contactInfo.zip_code Zip Code of client. String True
+        “Brazil: 01232-010” “Brazil: 01232-010” dropOffLocation.latitude Latitude for the delivery final
+        location. Number True 19.755164 Decimal d'
+      parameters:
+      - name: brand_name
+        in: path
+        required: true
+        schema:
+          type: string
+      security:
+      - bearerAuth: []
+      requestBody:
+        content:
+          application/json: {}
+      responses:
+        '200':
+          description: Successful response
+  /integration/notify-status:
+    post:
+      operationId: notifyStatusChangeCustomerSide
+      summary: Notify Status Change (Customer side)
+      tags:
+      - Delivery API
+      description: 'Notify Status Change (Customer side) We can inform you about changes in the order
+        status. You need to provide an endpoint to which we can send the below notifications. The optional
+        status will depend on the sales process that you cary out. The following is a list of the statuses
+        that we can notify: Delivery Statuses Status Description Default / Optional TASK_SCHEDULED Indicates
+        the first state when the task was scheduled Indicates when a return occurs and the task is re-queued
+        and it is ready to be taken or cancelled. DEFAULT TASK_ASSIGNED Indicates the moment when the
+        zubalero takes the order. DEFAULT PICKED_OUT Indicates the moment when the zubalero starts the
+        delivery process and He already has the order DEFAULT ENROUTE_TO_DROPOFF Indicates the moment
+        when the zubalero navigates the map for the customer''s location DEFAULT AT_DROPOFF Indicates
+        the moment when the zubalero arrives at the address and proceeds to call then fill in the data
+        and the client''s signature. DEFAULT DELIVERED Indicates when the delivery is complete. DEFAULT
+        PENDING_RETURN Indicates the moment when the zubalero finish delivery and must come back to the
+        store OPTIONAL ENROUTE_TO_RETURN Indicates the moment wh'
+      security: []
+      requestBody:
+        content:
+          application/json: {}
+      responses:
+        '200':
+          description: Successful response
+  /orders/api/{brandId}/cancel:
+    put:
+      operationId: cancelTask
+      summary: Cancel task
+      tags:
+      - Cancel tasks
+      description: This endpoit is used to cancel an order that was previously created. When cancelling
+        an order the process of delivery or picking and deliver will finish This API is use to both service,
+        delivery or picking and delivery Request Atributte Description Datatype Example Note orderId Order
+        identifier String “order_1234_4566” In picking and delivery externalOrderId = customkey In delivery
+        externalOrderId = externalOrderId details Your cancellation reason String “Cancelled by client”,
+        "Issues with the order" Must to send “CANCEL” Issuer The entity that sends tihs request String
+        "Client", "Customer" Maximum 256 characteres
+      parameters:
+      - name: brandId
+        in: path
+        required: true
+        schema:
+          type: string
+      security:
+      - bearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            example:
+              orderId: '{{customer_order_id}}'
+              details: Cancellation reason
+              issuer: CLIENT
+      responses:
+        '200':
+          description: Successful response
+  /orders/api/pnp_e2e/jobs:
+    post:
+      operationId: createPickingDeliveryOrder
+      summary: Create Picking & Delivery Order
+      tags:
+      - Picking & Delivery API
+      description: 'Create Picking &amp; Delivery Quest At this endpoint the client will post the order
+        with all the required information. Here you could find the attributes necessary, the structure
+        and values to perform the process optimally. The format is JSON. Security scheme type BEARER TOKEN
+        Staging {{BASE_URL}}/api/pnp_e2e/jobs Production {{BASE_URL}}/api/pnp_e2e/jobs Description Feed
+        Description Datatype Required Examples Notes brand_ID Given identifier for each company integrated
+        with Zubale String True “florida-store”, ”1021” Maximum 256 characters comment General Comments
+        String False “generic” Maximum 256 characters contact_info.address Full address of customer''s
+        drop off location.See format address. String True contactInfo.comments General Comments String
+        False “generic” Maximum 256 characters contactInfo.name Full name of client String True “Pedro
+        Perez” Maximum 256 characters contactInfo.phone_number Phone number of client. String True “+50245549959”
+        Struct: + CC NDC SN Max 15 digits CC: Country code (1-3 Digits) NDC: National destination code
+        (Area code) if exists SN: Suscriber number contactInfo.zip_code Zip Code of client. String True
+        “Brazil: 01232-010” “Brazil: 01232-010” dropOffLoc'
+      security:
+      - bearerAuth: []
+      requestBody:
+        content:
+          application/json: {}
+      responses:
+        '200':
+          description: Successful response
+  /integration/notify_status:
+    post:
+      operationId: notifyStatusChange
+      summary: Notify Status Change
+      tags:
+      - Picking & Delivery API
+      description: 'Notify Status Change (Customer side) We can inform you about changes in the order
+        status. Through a JSON format You need to provide an endpoint to which we can send notifications
+        detailed on following table. The optional status will depend on the operational process that you
+        carry out. PICKING STATUSES The following is a list of the statuses that we could notify: Status
+        Description Default / Optional TASK_SCHEDULED Indicates the first state when the task was scheduled
+        Indicates when a return occurs and the task is re-queued and it is ready to be taken or cancelled.
+        DEFAULT TASK_ASSIGNED Indicates the moment when the Zubalero takes the order. DEFAULT PICKING_STARTED
+        This state occurs when the zubalero takes the task and reads the instructions to start collecting
+        the products. DEFAULT PRODUCT_ADDED Indicates the moment when Zubalero added to cart the first
+        product. (and only for the first product) DEFAULT PRODUCT_SCANNED Indicates the moment when Zubalero
+        scanned the first product OPTIONAL CALLED_CUSTOMER Indicates the moment when zubalero calls the
+        client to make a replace, add or remove a product. Also this status is sent when zubalero arrives
+        at the client´s address. OPTIONAL AT_C'
+      security: []
+      requestBody:
+        content:
+          application/json: {}
+      responses:
+        '200':
+          description: Successful response
+  /integration/scanBarCode:
+    get:
+      operationId: getProductCustomerSide
+      summary: Get Product (Customer Side)
+      tags:
+      - Picking & Delivery API
+      description: Get Product (Customer side) This is an endpoint you provide as a customer, in order
+        for Zubale to retrieve information about a given product. The most common use case happens when
+        a consumer requests a product replacement (product out of stock, difference in units, etc.), in
+        which case Zubale asks you to provide us with details of the new product. Response 200OK Feed
+        Description Datatype Required Example Notes productId Customer defined product id. internal product
+        identifier String True “BEB_LAC_ENT” Maximum 256 characteres thumbnailUrl Public Product image
+        URL in thumbnail format. In case of don´t have it, send empty attribute String True " https://galletasImage.com/7441001700065.jpg
+        Maximum 256 characters imageUrl Public Product image URL. In case of don´t have it, send empty
+        attribute String True https://galletasImage.com/7441001700065.jpg Maximum 256 characters unit
+        Product unit (units, kg, etc.) String True “PCE” {“PCE” “KGM”} upc Product upc or SKU EAN 13.
+        MUST TO BE THE SAME THAN ITEMID String True "978020137962” shortName Product short name it can
+        be the same than longtName String True "Galletas para perros" Maximum 256 characters longName
+        Product long name it can be the s
+      security: []
+      requestBody:
+        content:
+          application/json:
+            example: {}
+      responses:
+        '200':
+          description: Successful response
+  /integration/finalOrder:
+    post:
+      operationId: confirmOrder
+      summary: Confirm Order
+      tags:
+      - Picking & Delivery API
+      description: Confirm order Once the order picking has been completed, we send you the final order,
+        so you can perform any bookkeeping, calculation or any other processing on your end. You may receive
+        the order unchanged from what the consumer originally ordered, or it may have changed (added/replaced/deleted
+        items), based on product availability at the store The only relevant field for you, should be
+        each item's quantity. Be aware of new/replaced/removed items (if any). Attribute Description Required
+        Datatype Examples Notes requestId ID that is recognizable to your operations Must to be the same
+        than customkey True String "REQU-add90e3b-f086-439f-9e63-b25ac55b287c" Must to be the same than
+        customkey customkey ID that is recognizable to your operations Must to be the same than requestId
+        True String "REQU-add90e3b-f086-439f-9e63-b25ac55b287c" Must to be the same than requestID storeID
+        ID of the store where the task is being performed. True String "123" Maximum 32 characters status
+        Order status. Always has to be OPEN True String “OPEN” {”OPEN”} deliveryType Customer defined
+        type of delivery. True String "DELIVERY” {“DELIVERY”} payment Payment information True Object
+        payment.paymentMode It is the m
+      security:
+      - bearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            example:
+              address:
+                address: Luis Arias Schereiber - 345
+                addressReference: ''
+                city: Lima
+                country: PER
+                externalNumber: '345'
+                id: 0
+                internalNumber: ''
+                latitude: -12.1210855
+                longitude: -77.0104072
+                neighborhood: Miraflores
+                postalCode: '150122'
+                state: LIMA
+                street: Luis Arias Schereiber
+              comment: null - null
+              consumer:
+                id: '1342'
+                user:
+                  email: acllsis@gmail.com
+                  person:
+                    birthdate: '1969-12-31T00:00:00.000Z'
+                    contact:
+                      ext: '0'
+                      mean: 1
+                      value: '+51911111111'
+                    gender: M
+                    lastname: cenco
+                    name: prueba
+                    secondname: ''
+              contactPreferences: ''
+              customkey: v533623wofq-01
+              deliveryType: ENTREGA
+              originalOrderRequest:
+                deliveryInstructions: 'null'
+                orderDate: '2021-06-30T00:00:00.000'
+                orderRequestItems:
+                - comments: ''
+                  discount: 0
+                  itemId: '166885'
+                  product:
+                    aisle: ''
+                    imageUrl: ''
+                    longName: ''
+                    pesable: false
+                    price: 0
+                    productId: '187743000013'
+                    restricted: true
+                    shortName: ''
+                    thumbnailUrl: ''
+                    unit: un
+                    upc: '166885'
+                  quantity: 2
+                  reference: null
+                  status: PERSISTENT
+                  totalPrice: 0
+                  unitPrice: 0
+                orderShipmentCost: 0
+                orderTotalCost: 63.8
+              payment:
+                payOnDeliveryType: CARD
+                paymentMode: PAY_ON_DELIVERY
+                paymentStatus: ''
+              phone1: '+51911111111'
+              phone2: ''
+              recipient1: Aaaaaa Cccccccc
+              recipient2: ''
+              requestId: ORDER_ID
+              status: READY
+              storeId: '123'
+              timeSlot:
+                idStore: '123'
+                serviceType: 0
+                timeFrom: '2021-07-10T14:00:00.000'
+                timeTo: '2021-07-10T17:00:00.000'
+      responses:
+        '200':
+          description: Successful response
+  /oauth2/token:
+    post:
+      operationId: createCredentialToken
+      summary: 1. Create Credential Token
+      tags:
+      - Live Tracking For Cencosud
+      requestBody:
+        content:
+          application/json:
+            example:
+              client_id: '{{CLIENT_ID}}'
+              client_secret: '{{CLIENT_SECRET}}'
+              grant_type: client_credentials
+      responses:
+        '200':
+          description: Successful response
+  /orders/api/pnp_delivery/jobs/sync:
+    post:
+      operationId: createDeliveryOrder2
+      summary: Create Delivery Order
+      tags:
+      - Delivery API
+      deprecated: true
+      description: 'Security scheme type BEARER TOKEN Staging {{BASE_URL}}/api/pnp_delivery/jobs Production
+        {{BASE_URL}}/api/pnp_delivery/jobs At this endpoint the client will post the order with all the
+        required information. Here you could find the attributes necessary, the structure and values to
+        perform the process optimally. The format is JSON. Description Payload request structure: Feed
+        Description Datatype Required Examples Notes brand_ID Given identifier for each company integrated
+        with Zubale String True “florida-store”, ”1021” Maximum 256 characters comment General Comments
+        String False “generic” Maximum 256 characters contact_info.address Full address of customer''s
+        drop off location.See format address. String True contactInfo.comments General Comments String
+        False “generic” Maximum 256 characters contactInfo.name Full name of client String True “Pedro
+        Perez” Maximum 256 characters contactInfo.phone_number Phone number of client. String True “+50245549959”
+        Struct: + CC NDC SN Max 15 digits CC: Country code (1-3 Digits) NDC: National destination code
+        (Area code) if exists SN: Suscriber number contactInfo.zip_code Zip Code of client. String True
+        “Brazil: 01232-010” “Brazil: 01232-010” dropOffLo'
+      security:
+      - bearerAuth: []
+      requestBody:
+        content:
+          application/json: {}
+      responses:
+        '200':
+          description: Successful response
+  /orders/api/{brand_id}/cancel:
+    put:
+      operationId: cancelTask2
+      summary: Cancel task
+      tags:
+      - Cancel tasks
+      deprecated: true
+      description: This endpoit is used to cancel an order that was previously created. When cancelling
+        an order the process of delivery or picking and deliver will finish This API is use to both service,
+        delivery or picking and delivery Request Atributte Description Datatype Example Note orderId Order
+        identifier String “order_1234_4566” In picking and delivery externalOrderId = customkey In delivery
+        externalOrderId = externalOrderId details Your cancellation reason String “Cancelled by client”,
+        "Issues with the order" Must to send “CANCEL” Issuer The entity that sends tihs request String
+        "Client", "Customer" Maximum 256 characteres
+      parameters:
+      - name: brand_id
+        in: path
+        required: true
+        schema:
+          type: string
+      security:
+      - bearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            example:
+              orderId: '{{customer_order_id}}'
+              details: Cancellation reason
+              issuer: CLIENT
+      responses:
+        '200':
+          description: Successful response
+  /smart-hub/api/cencosud/order:
+    post:
+      operationId: createOrder
+      summary: 2. Create Order
+      tags:
+      - Live Tracking For Cencosud
+      security: []
+      requestBody:
+        content:
+          application/json:
+            example:
+              metadata:
+                orders:
+                - emissionDate: '2023-02-03T02:23:51.000Z'
+                  sort: 1
+                  status: OPEN
+                  inProgressStatus: PICKED_OUT
+                  brand:
+                    name: JUMBO/METRO/SPID
+                    id: 226
+                  store:
+                    name: Jumbo Hayuelos
+                    number: swl15
+                    coords:
+                      latitude: 4.592186581553626
+                      longitude: -74.13686065057105
+                  externalOrderId: JMB-v1677506-01
+                  slot:
+                    pickupWindowStartTime: '2023-02-02T13:00:00.000Z'
+                    pickupWindowEndTime: '2023-02-02T16:30:00.000Z'
+                    deliveryWindowStartTime: '2023-02-02T17:00:00.000Z'
+                    deliveryWindowEndTime: '2023-02-02T20:00:59.000Z'
+                  client:
+                    name: Alejandra Recinos
+                    phoneNumber: '+50250000001'
+                    address:
+                      fullAddress: ''
+                      coords:
+                        latitude: 4.592186581553626
+                        longitude: -74.13686065057105
+                    email: alejandra.recinos@gmail.com
+              timestamp: '2023-02-03T02:23:51.000Z'
+              driver:
+                name: Gabriela Recinos
+                phoneNumber: '+50250000002'
+                userId: null
+                plateNumber: GT-1234
+                carModel: Toyota
+                carModelYear: '2015'
+                photo: public_URL
+      responses:
+        '200':
+          description: Successful response
+  /smart-hub/api/cencosud/orders/states:
+    put:
+      operationId: updateStatusOfTheOrder
+      summary: 3. Update Status of the order
+      tags:
+      - Live Tracking For Cencosud
+      requestBody:
+        content:
+          application/json:
+            example:
+              metadata:
+                orders:
+                - status: OPEN
+                  inProgressStatus: ENROUTE_TO_DROPOFF
+                  externalOrderId: JMB-v1677506-01
+              timestamp: '2023-02-03T02:23:51.000Z'
+      responses:
+        '200':
+          description: Successful response
+  /smart-hub/api/cencosud/coordinates:
+    post:
+      operationId: sendCoordinates
+      summary: 4. Send Coordinates
+      tags:
+      - Live Tracking For Cencosud
+      requestBody:
+        content:
+          application/json:
+            example:
+              coordinates:
+                latitude: 4.592186581553626
+                longitude: -74.13686065057105
+              externalOrderId: JMB-v1677506-01
+              driverPhoneNumber: '+50250000002'
+              timestamp: '2023-02-03T02:23:51.000Z'
+      responses:
+        '200':
+          description: Successful response
+  /product-catalog/api/v1/catalog/{brand_id}:
+    post:
+      operationId: createCatalog
+      summary: Create catalog
+      tags:
+      - Product catalog
+      description: 'JSON object mass creation Based on a JSON array of products, create products massively
+        in our service. brand_id in the path params is an integer value provided by Zubale. Note: each
+        brand can only have 1 existing catalog, which means calling this endpoint again will overwrite
+        your existing data, this includes all product records from all stores . Warning: if you''re integrating
+        your stock service with us, make sure to set all products stock values to 0 . Key Value store_id
+        Your store identifier. product_code Your product''s code (formatted as SKU, EAN, GTIN, ISBN, etc.).
+        name Product name. brand Product brand''s name. description Product description. available Product
+        availabilty. condition Condition of the product (new, refurbished, used). price Product base price
+        for the previously defined store. sale_price Product price if it''s in sale, else use base price.
+        link URL to your product''s page. image_link URL to your product''s image. department Product
+        categorization. restricted Certain products might be restricted (like alcohol and medicines),
+        for any other product that might not fall into this category, set this field to false.'
+      parameters:
+      - name: brand_id
+        in: path
+        required: true
+        schema:
+          type: string
+      security:
+      - bearerAuth: []
+      requestBody:
+        content:
+          application/json: {}
+      responses:
+        '200':
+          description: Successful response
+    put:
+      operationId: updateCatalog
+      summary: Update catalog
+      tags:
+      - Product catalog
+      description: Update a given list of products. This endpoint will not overwrite your existing data.
+        Attempting to update an unexisting record won't create it, meaning that if you send a product
+        that isn't on our database will not attempt to insert it. To make sure it exists, please refer
+        to the Get products(s) section brand_id in the path params is an integer value provided value.
+        "brand_id", "store_id" and "product_code" are mandatory fields. Any undeclared, empty strings,
+        zero and null values won't be overwritten on the original record.
+      parameters:
+      - name: brand_id
+        in: path
+        required: true
+        schema:
+          type: string
+      security:
+      - bearerAuth: []
+      requestBody:
+        content:
+          application/json: {}
+      responses:
+        '200':
+          description: Successful response
+  /product-catalog/api/v1/brands/{brand_id}/products:
+    post:
+      operationId: createProduct
+      summary: Create product
+      tags:
+      - Product catalog
+      description: 'Creates an array of multiple products at once. This endpoint will not overwrite existing
+        records, but will return products that failed to insert whenever they don''t match the expected
+        values. Warning: if you''re integrating your stock service with us, make sure to set all products
+        stock values to 0 .'
+      parameters:
+      - name: brand_id
+        in: path
+        required: true
+        schema:
+          type: string
+      security:
+      - bearerAuth: []
+      requestBody:
+        content:
+          application/json: {}
+      responses:
+        '200':
+          description: Successful response
+    get:
+      operationId: getProductS
+      summary: Get product(s)
+      tags:
+      - Product catalog
+      description: Get a product based on certain query parameters.
+      parameters:
+      - name: brand_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+  /product-catalog/api/v1/products:
+    put:
+      operationId: updateProduct
+      summary: Update product
+      tags:
+      - Product catalog
+      description: Updates a single product. "brandId", "storeId", and "productCode" are mandatory fields.
+        Any undeclared, empty strings, zero and null values won't be overwritten on the original record.
+      security:
+      - bearerAuth: []
+      requestBody:
+        content:
+          application/json: {}
+      responses:
+        '200':
+          description: Successful response
+  /hermes/integrations/{iINTEGRATION_NAME}/conversations/messages:
+    post:
+      operationId: multipleProductCampaignCatalog
+      summary: Multiple product campaign - Catalog
+      tags:
+      - External outbound
+      description: 'Send multiple product items as a WhatsApp catalog campaign message. Required headers:
+        Content-Type: application/json Authorization: Bearer {{jwtToken}} Use to showcase multiple products
+        in a single outbound campaign. Request body JSON structure: target (string, required): Recipient
+        phone number, including country code. templateName (string, required): Name of the WhatsApp campaign/template
+        for multiple products. languageCode (string, required): Language/locale code for the template
+        (for example, es , en_US ). flow (string, optional): Static flow identifier provided by Zubale.
+        payload (object, required): Template variables and catalog configuration. body (array, required):
+        Template components for the message body and CTA button. Discount text component: parameters[].text
+        contains values such as discount percentage. Catalog button component ( type: button , sub_type:
+        mpm ): parameters[].action.sections[].title is the section title shown in the catalog. product_items[]
+        is an array of catalog product entries. Each item has product_retailer_id (string, required):
+        Identifier of the product in your catalog. metadata (object, required): Campaign and routing metadata.
+        node (string, optional'
+      parameters:
+      - name: iINTEGRATION_NAME
+        in: path
+        required: true
+        schema:
+          type: string
+      security:
+      - bearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            example:
+              target: '+57301000000'
+              templateName: example_multiple_products_template
+              languageCode: es
+              payload:
+                body:
+                - type: body
+                  parameters:
+                  - type: text
+                    text: 30%
+                - type: button
+                  sub_type: mpm
+                  index: 0
+                  parameters:
+                  - type: action
+                    action:
+                      sections:
+                      - title: Productos encontrados
+                        product_items:
+                        - product_retailer_id: '22222'
+                        - product_retailer_id: CVC
+                        - product_retailer_id: ' 33333'
+              metadata:
+                promotionCode: PROMOTION000
+      responses:
+        '200':
+          description: Successful response
+  /webhook:
+    post:
+      operationId: webhookConfiguration
+      summary: Webhook Configuration
+      tags:
+      - 'Webhook: Payload Structure for Order Notification'
+      description: Configuration for setting up the webhook. The client should point their webhook to
+        the provided URL with the appropriate method and headers.
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+  /external-notification-handler/api/v1/events:
+    post:
+      operationId: sendEvent
+      summary: Send Event
+      tags:
+      - API Documentation for External Notification Handler
+      description: 'Send Event This endpoint allows clients to notify their consumers via WhatsApp about
+        order status updates. Allowed Events The following values are allowed for the event field: order_created
+        picking_started picked_out enroute_to_dropoff at_dropoff delivered If you require additional custom
+        events, please contact us to discuss adding them to the system. Note: The required parameters
+        may vary depending on the event type. Each event corresponds to specific message templates and
+        required parameters. Ensure that the request includes the necessary fields for the intended notification.
+        Field Details Field Data Type Mandatory Description Format event String Yes Type of event (e.g.,
+        order_created ). Text retailer String Yes Retailer identifier. Text target String Yes Target contact
+        (e.g., phone number). E.164 format orderReference String Yes Unique order reference. Alphanumeric
+        data Object Yes Additional order details. JSON Object supplier.identifier String No Supplier unique
+        identifier. Text supplier.name String No Supplier name. Text countryCode String No Country code
+        of the order. ISO 3166-1 Alpha-2 brandIdentifier String No Identifier of the brand. Alphanumeric
+        storeIdentifier String No '
+      requestBody:
+        content:
+          application/json:
+            example:
+              retailer: development
+              supplier:
+                identifier: '22'
+                name: supply
+              event: order_created
+              target: '+50241512151'
+              orderReference: v10000-23
+              countryCode: MX
+              brandIdentifier: '123'
+              storeIdentifier: '456'
+              data:
+                customerName: Wesley López
+                deliveryDate: '2025-02-15'
+                slotStart: '13:00'
+                slotEnd: '15:00'
+                brandName: Zubale
+                plateNumber: P123ABC
+                shopperName: Juan Perez
+      responses:
+        '200':
+          description: Successful response

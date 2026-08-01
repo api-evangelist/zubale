@@ -1,0 +1,20 @@
+generated: '2026-07-21'
+method: searched
+source: https://developers.zubale.com/ (Zubale API developer documentation)
+versioning:
+  scheme: uri-path + documented collection version
+  current: v3
+  docs: https://developers.zubale.com/
+deprecation:
+  policy_url: null
+  notes: >-
+    The developer documentation publishes a current "Zubale API | V3" surface and a
+    superseded "Zubale API | V2 (Deprecated)" surface. No formal deprecation policy,
+    Sunset header (RFC 8594), or removal timeline is published.
+sla:
+  url: null
+  notes: No public SLA / uptime target published.
+status_page: null
+deprecated_operations:
+- openapi/zubale-openapi.yml#createDeliveryOrder2   # V2 POST /orders/api/pnp_delivery/jobs/sync
+- openapi/zubale-openapi.yml#cancelTask2            # V2 PUT /orders/api/{brand_id}/cancel

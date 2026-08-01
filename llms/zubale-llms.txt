@@ -1,0 +1,40 @@
+# Zubale API
+
+> Zubale is a Latin American e-commerce fulfillment and last-mile delivery platform. Its API lets retailers and brands create picking and delivery tasks ("jobs"/"quests"), manage a product catalog, receive order status callbacks, and message consumers over WhatsApp (Consumer Connect). Authentication is OAuth2 client-credentials (Bearer JWT). The developer documentation is published as a public Postman collection.
+
+## APIs
+
+- [Zubale API developer documentation](https://developers.zubale.com/): Public Postman documentation for the Zubale integration API (V3 current, V2 deprecated).
+- Production base URL: https://api.zubale.com (OAuth2 required)
+- Sandbox host: https://api-cencosandbox.zubale.com
+
+## Specs
+
+- [OpenAPI (derived)](openapi/zubale-openapi.yml): 21 operations across delivery, picking & delivery, product catalog, WhatsApp messaging (Hermes), Consumer Connect, live tracking, and webhooks.
+- [Postman collection (verbatim)](postman/zubale-collection.json)
+
+## Authentication
+
+- [Authentication profile](authentication/zubale-authentication.yml): OAuth2 client-credentials — POST /oauth2/token (HTTP Basic or client_id/client_secret JSON) returns a Bearer JWT.
+
+## Artifacts
+
+- [API conventions](conventions/zubale-conventions.yml)
+- [Error / status catalog](errors/zubale-problem-types.yml)
+- [Lifecycle & versioning](lifecycle/zubale-lifecycle.yml)
+- [Webhook catalog](asyncapi/zubale-webhooks.yml)
+- [Data model](data-model/zubale-data-model.yml)
+- [Sandbox / environments](sandbox/zubale-sandbox.yml)
+- [MCP candidate server](mcp/zubale-mcp.yml)
+- [Agentic access profile](agentic-access/zubale-agentic-access.yml)
+- [Conformance](conformance/zubale-conformance.yml)
+- [Trust center](security/zubale-trust-center.yml): ISO 27001, SOC 3, CAIQ (security.zubale.com)
+- [Vulnerability disclosure](security/zubale-vulnerability-disclosure.yml): security@zubale.com
+
+## Docs
+
+- [Company site](https://zubale.com)
+- [Blog](https://www.zubale.com/blog/)
+- [Help / FAQ](https://www.zubale.com/help/)
+- [Terms and Conditions](https://www.zubale.com/terminos-y-condiciones/)
+- [Privacy Policy](https://www.zubale.com/privacidad/)

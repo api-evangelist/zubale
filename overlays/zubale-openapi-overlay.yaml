@@ -1,0 +1,24 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Zubale API
+  version: 1.0.0
+extends: openapi/zubale-openapi.yml
+actions:
+- target: $.info
+  update:
+    x-apievangelist-rating: 3
+    x-apievangelist-source: Derived from the public Zubale Postman collection (developers.zubale.com)
+    x-apievangelist-notes: >-
+      OpenAPI reconstructed from the published Postman collection. Base URL is
+      environment-scoped ({{BASE_URL}}); production api.zubale.com requires OAuth2
+      client-credentials. V2 operations are marked deprecated.
+- target: $.info
+  update:
+    x-tags:
+    - delivery
+    - logistics
+    - ecommerce
+    - fulfillment
+    - latin-america
+    - whatsapp-messaging
+    - webhooks

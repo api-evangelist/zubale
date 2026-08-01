@@ -1,0 +1,10 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/zubale-openapi.yml
+schemes:
+- name: oauth2
+  source: openapi/zubale-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.zubale.com/oauth2/token
+scopes: []

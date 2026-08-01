@@ -1,0 +1,32 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/zubale-openapi.yml
+summary:
+  types:
+  - http
+  - oauth2
+  oauth2_flows:
+  - clientCredentials
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  description: 'OAuth2 client-credentials access token from POST /oauth2/token, sent as Authorization:
+    Bearer <token>.'
+  sources:
+  - openapi/zubale-openapi.yml
+- name: basicAuth
+  type: http
+  scheme: basic
+  description: HTTP Basic (client_id:client_secret) used only against POST /oauth2/token.
+  sources:
+  - openapi/zubale-openapi.yml
+- name: oauth2
+  type: oauth2
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.zubale.com/oauth2/token
+    scopes: 0
+  sources:
+  - openapi/zubale-openapi.yml

@@ -1,0 +1,59 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/zubale-openapi.yml (request bodies + path params from the Postman collection)
+entities:
+- name: Brand
+  description: The customer/company (identified by brandId) that integrates with Zubale.
+  id_fields: [brandId, brand_id, brand_name]
+- name: Order
+  description: >-
+    A delivery or picking-and-delivery task (a "job"/"quest"). Carries requestId,
+    orderId, storeId, contactInfo, dropOffLocation and item lines.
+  id_fields: [orderId, requestId, externalOrderId, customer_order_id]
+- name: Product
+  description: A catalog product (product_code/SKU, name, price, stock, store_id).
+  id_fields: [product_code, sku]
+- name: Catalog
+  description: A per-brand collection of products created/updated in bulk.
+- name: Store
+  description: A physical store/location where picking happens.
+  id_fields: [storeId, store_id, storeIdentifier]
+- name: Event
+  description: A Consumer Connect / external notification event delivered to a consumer (e.g. order_created) over WhatsApp.
+- name: Message
+  description: An outbound Hermes WhatsApp template/campaign message.
+- name: Webhook
+  description: A configured endpoint that receives order-status notifications.
+relationships:
+- from: Order
+  to: Brand
+  type: belongs_to
+  via: brandId
+- from: Order
+  to: Store
+  type: belongs_to
+  via: storeId
+- from: Product
+  to: Brand
+  type: belongs_to
+  via: brand_id
+- from: Product
+  to: Store
+  type: belongs_to
+  via: store_id
+- from: Catalog
+  to: Brand
+  type: belongs_to
+  via: brand_id
+- from: Catalog
+  to: Product
+  type: has_many
+  via: products
+- from: Event
+  to: Order
+  type: references
+  via: orderReference
+- from: Webhook
+  to: Order
+  type: references
+  via: id

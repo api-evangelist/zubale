@@ -1,0 +1,25 @@
+generated: '2026-07-21'
+method: searched
+probe: true
+source: https://security.zubale.com/
+url: https://security.zubale.com/
+platform: SafeBase
+certifications:
+- ISO 27001
+- SOC 3
+- CAIQ
+notes: >-
+  SafeBase-powered trust center. Documents an ISO 27001 certification, a GCP SOC 3
+  report, and a GCP CAIQ self-assessment; the page states the company is "working
+  towards" additional compliance certifications. Advertised security controls include
+  audit logging, data encryption at rest, application penetration testing, code
+  analysis, anti-malware, DNS filtering, data loss prevention, employee security
+  training, business continuity planning, and incident response.
+evidence:
+- source: https://security.zubale.com/
+  keywords:
+  - trust center
+  - iso 27001
+  - soc 3
+  - caiq
+  - responsible disclosure

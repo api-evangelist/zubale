@@ -1,0 +1,31 @@
+generated: '2026-07-21'
+method: searched
+source: https://developers.zubale.com/ (Zubale API developer documentation)
+spec_type: Webhooks
+summary: >-
+  Zubale delivers order lifecycle events to customer-provided HTTP endpoints. There is
+  no published AsyncAPI document; this is the documented webhook/callback surface.
+transport: https
+delivery: push (POST JSON to a customer-registered endpoint)
+webhooks:
+- name: notify-status
+  direction: outbound (Zubale -> customer)
+  operation: POST {customer_endpoint}
+  description: >-
+    Order status change notification. Payload includes newStatus, oldStatus,
+    lastLocation (lat/long), date, orderID and a trackingUrl.
+  statuses_example: [TASK_SCHEDULED, TASK_CANCELLED]
+- name: order-notification-webhook
+  direction: outbound (Zubale -> customer)
+  operation: POST {configured_webhook_url}
+  description: >-
+    Configurable order-notification webhook. Example payload carries id, status
+    (e.g. "pending") and an items[] array (currency, item_id, item_name, item_price,
+    quantity).
+- name: external-notification-handler
+  direction: inbound (customer -> Zubale, Consumer Connect)
+  operation: POST /external-notification-handler/api/v1/events
+  description: >-
+    Consumer Connect: clients notify their consumers via WhatsApp about order status
+    updates by sending events (e.g. order_created) with retailer, supplier, target
+    phone, orderReference, and slot data.

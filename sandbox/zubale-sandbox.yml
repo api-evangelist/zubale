@@ -1,0 +1,24 @@
+generated: '2026-07-21'
+method: searched
+source: https://developers.zubale.com/ (Zubale API Postman collection)
+summary: >-
+  Zubale exposes a staging/sandbox environment addressed via the {{BASE_URL}} Postman
+  variable. The published collection includes a named sandbox host for the Cencosud
+  live-tracking flow. Access requires client credentials issued by a Zubale Sales
+  Account Manager; no self-serve public test credentials are published.
+environments:
+- name: sandbox
+  host: https://api-cencosandbox.zubale.com
+  notes: Cencosud live-tracking sandbox host published verbatim in the collection (token + smart-hub endpoints).
+- name: staging
+  host: '{{BASE_URL}}'
+  notes: >-
+    The collection uses a {{BASE_URL}} variable set per environment (staging vs
+    production); order-creation examples are labelled "Zubale Staging".
+- name: production
+  host: https://api.zubale.com
+  notes: Requires OAuth2 client credentials; returns 401 without a valid token.
+test_values:
+  notes: >-
+    No public magic/test identifiers, test cards, or fixture tokens are published; the
+    API is B2B and provisioned per customer. Do not invent test values.
