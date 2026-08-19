@@ -66,3 +66,9 @@ tools:
 - name: sendEvent
   description: Send Event
   source_operation: openapi/zubale-openapi.yml#sendEvent
+deployment:
+  mode: none
+  verified: derived
+  tools: 19
+  checked: '2026-08-12'
+  source: catalog MCP census

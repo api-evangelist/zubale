@@ -1,0 +1,611 @@
+{
+  "item": [
+    {
+      "id": "d8b40c64-bab9-4294-b5ad-b432ecf20669",
+      "name": "Product catalog",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6966e375-cfeb-4841-a005-945e8fc3a52b",
+          "name": "Create catalog",
+          "request": {
+            "name": "Create catalog",
+            "description": {
+              "content": "JSON object mass creation Based on a JSON array of products, create products massively in our service. brand_id in the path params is an integer value provided by Zubale. Note: each brand can only have 1 existing catalog, which means calling this endpoint again will overwrite your existing data, this includes all product records from all stores . Warning: if you're integrating your stock service with us, make sure to set all products stock values to 0 . Key Value store_id Your store identifier. product_code Your product's code (formatted as SKU, EAN, GTIN, ISBN, etc.). name Product name. brand Product brand's name. description Product description. available Product availabilty. condition Condition of the product (new, refurbished, used). price Product base price for the previously defined store. sale_price Product price if it's in sale, else use base price. link URL to your product's page. image_link URL to your product's image. department Product categorization. restricted Certain products might be restricted (like alcohol and medicines), for any other product that might not fall into this category, set this field to false.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "product-catalog",
+                "api",
+                "v1",
+                "catalog",
+                ":brand_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "brand_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "44aa3165-8257-4b4e-9e54-52fbea6db5f3",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "product-catalog",
+                    "api",
+                    "v1",
+                    "catalog",
+                    ":brand_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "brand_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "aa64b92f-1691-4e21-9c6b-9ed0dd3d41ab",
+          "name": "Update catalog",
+          "request": {
+            "name": "Update catalog",
+            "description": {
+              "content": "Update a given list of products. This endpoint will not overwrite your existing data. Attempting to update an unexisting record won't create it, meaning that if you send a product that isn't on our database will not attempt to insert it. To make sure it exists, please refer to the Get products(s) section brand_id in the path params is an integer value provided value. \"brand_id\", \"store_id\" and \"product_code\" are mandatory fields. Any undeclared, empty strings, zero and null values won't be overwritten on the original record.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "product-catalog",
+                "api",
+                "v1",
+                "catalog",
+                ":brand_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "brand_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e049054b-3181-4fde-829a-c59fd6cbc401",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "product-catalog",
+                    "api",
+                    "v1",
+                    "catalog",
+                    ":brand_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "brand_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8a499ff7-f414-4a3f-bbd1-d4a364b26239",
+          "name": "Create product",
+          "request": {
+            "name": "Create product",
+            "description": {
+              "content": "Creates an array of multiple products at once. This endpoint will not overwrite existing records, but will return products that failed to insert whenever they don't match the expected values. Warning: if you're integrating your stock service with us, make sure to set all products stock values to 0 .",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "product-catalog",
+                "api",
+                "v1",
+                "brands",
+                ":brand_id",
+                "products"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "brand_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "18003e92-b1f1-42d8-9c54-2eae2ed5b140",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "product-catalog",
+                    "api",
+                    "v1",
+                    "brands",
+                    ":brand_id",
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "brand_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "865df67a-742f-461f-aa7c-c8dd1de1ab32",
+          "name": "Get product(s)",
+          "request": {
+            "name": "Get product(s)",
+            "description": {
+              "content": "Get a product based on certain query parameters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "product-catalog",
+                "api",
+                "v1",
+                "brands",
+                ":brand_id",
+                "products"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "brand_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7655ef2b-6267-4e09-ba93-1cdbdaec8cc9",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "product-catalog",
+                    "api",
+                    "v1",
+                    "brands",
+                    ":brand_id",
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "brand_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4438a6c1-352d-4826-80a0-6ba6e6bd74d0",
+          "name": "Update product",
+          "request": {
+            "name": "Update product",
+            "description": {
+              "content": "Updates a single product. \"brandId\", \"storeId\", and \"productCode\" are mandatory fields. Any undeclared, empty strings, zero and null values won't be overwritten on the original record.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "product-catalog",
+                "api",
+                "v1",
+                "products"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d884cfb0-1368-4d44-8c38-ded0799d2701",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "product-catalog",
+                    "api",
+                    "v1",
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.zubale.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "4cf21282-7990-4bce-b82b-84e380c0bdac",
+    "name": "Zubale API Documentation for External Notification Handler Product catalog API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Overview. This document is a developer’s guide and provides the necessary information to integrate your websites and mobile apps with our Zubale API endpoints. In this document some of our API endpoints are discussed, giving their business context and some examples on how to use specific features provided by the endpoints. Basic prior knowledge on JSON, HTTPS and an understanding of software programming is assumed. Integration It's the process to unite with your service automatically in order to provide a connection between your services and Zubale's system to create tasks and update its statuses. It is important to note that this API is serving different customers, thus modifications to it are not feasible. If you have special requirements or needs, please talk to your Sales Account Manager to explore a custom integration. How to start with Zubale? https://en.zubale.com/ Terminology Customer: This is the company that integrates with us Client: This is the person who make an order Zubalero: The person who runs Picking and deliveries Response The Zubale API uses HTTP status codes to indicate the status of the requests. This includes successful and error responses. Success Response Codes HTTP Status Code Description 200 Request successful. 200 User created. Error Response Codes HTTP Status Code Description 500 Internal server error. 409 Format not recognized. 409 Encoding format not recognized. 404 Content not found 401 Unauthorized/Invalid token 400 Bad request.\n\nContact Support:\n Name: Zubale",
+      "type": "text/plain"
+    }
+  }
+}

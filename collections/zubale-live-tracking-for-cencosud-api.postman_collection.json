@@ -1,0 +1,415 @@
+{
+  "item": [
+    {
+      "id": "a1434e3b-98c4-4c66-8632-6227ff84ceed",
+      "name": "Live Tracking For Cencosud",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ffe42c96-7b41-44da-ab11-7b961730e8f6",
+          "name": "1. Create Credential Token",
+          "request": {
+            "name": "1. Create Credential Token",
+            "description": {},
+            "url": {
+              "path": [
+                "oauth2",
+                "token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"client_id\": \"{{CLIENT_ID}}\",\n  \"client_secret\": \"{{CLIENT_SECRET}}\",\n  \"grant_type\": \"client_credentials\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "69f47cf7-5d1e-4fea-98fa-0a7ebb02ce28",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth2",
+                    "token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"client_id\": \"{{CLIENT_ID}}\",\n  \"client_secret\": \"{{CLIENT_SECRET}}\",\n  \"grant_type\": \"client_credentials\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a1e0dea9-a064-4398-a17c-14c921e0e3f5",
+          "name": "2. Create Order",
+          "request": {
+            "name": "2. Create Order",
+            "description": {},
+            "url": {
+              "path": [
+                "smart-hub",
+                "api",
+                "cencosud",
+                "order"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"metadata\": {\n    \"orders\": [\n      {\n        \"emissionDate\": \"2023-02-03T02:23:51.000Z\",\n        \"sort\": 1,\n        \"status\": \"OPEN\",\n        \"inProgressStatus\": \"PICKED_OUT\",\n        \"brand\": {\n          \"name\": \"JUMBO/METRO/SPID\",\n          \"id\": 226\n        },\n        \"store\": {\n          \"name\": \"Jumbo Hayuelos\",\n          \"number\": \"swl15\",\n          \"coords\": {\n            \"latitude\": 4.592186581553626,\n            \"longitude\": -74.13686065057105\n          }\n        },\n        \"externalOrderId\": \"JMB-v1677506-01\",\n        \"slot\": {\n          \"pickupWindowStartTime\": \"2023-02-02T13:00:00.000Z\",\n          \"pickupWindowEndTime\": \"2023-02-02T16:30:00.000Z\",\n          \"deliveryWindowStartTime\": \"2023-02-02T17:00:00.000Z\",\n          \"deliveryWindowEndTime\": \"2023-02-02T20:00:59.000Z\"\n        },\n        \"client\": {\n          \"name\": \"Alejandra Recinos\",\n          \"phoneNumber\": \"+50250000001\",\n          \"address\": {\n            \"fullAddress\": \"\",\n            \"coords\": {\n              \"latitude\": 4.592186581553626,\n              \"longitude\": -74.13686065057105\n            }\n          },\n          \"email\": \"alejandra.recinos@gmail.com\"\n        }\n      }\n    ]\n  },\n  \"timestamp\": \"2023-02-03T02:23:51.000Z\",\n  \"driver\": {\n    \"name\": \"Gabriela Recinos\",\n    \"phoneNumber\": \"+50250000002\",\n    \"userId\": null,\n    \"plateNumber\": \"GT-1234\",\n    \"carModel\": \"Toyota\",\n    \"carModelYear\": \"2015\",\n    \"photo\": \"public_URL\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fab5c949-8816-42a4-8a24-6e994caa909d",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "smart-hub",
+                    "api",
+                    "cencosud",
+                    "order"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"metadata\": {\n    \"orders\": [\n      {\n        \"emissionDate\": \"2023-02-03T02:23:51.000Z\",\n        \"sort\": 1,\n        \"status\": \"OPEN\",\n        \"inProgressStatus\": \"PICKED_OUT\",\n        \"brand\": {\n          \"name\": \"JUMBO/METRO/SPID\",\n          \"id\": 226\n        },\n        \"store\": {\n          \"name\": \"Jumbo Hayuelos\",\n          \"number\": \"swl15\",\n          \"coords\": {\n            \"latitude\": 4.592186581553626,\n            \"longitude\": -74.13686065057105\n          }\n        },\n        \"externalOrderId\": \"JMB-v1677506-01\",\n        \"slot\": {\n          \"pickupWindowStartTime\": \"2023-02-02T13:00:00.000Z\",\n          \"pickupWindowEndTime\": \"2023-02-02T16:30:00.000Z\",\n          \"deliveryWindowStartTime\": \"2023-02-02T17:00:00.000Z\",\n          \"deliveryWindowEndTime\": \"2023-02-02T20:00:59.000Z\"\n        },\n        \"client\": {\n          \"name\": \"Alejandra Recinos\",\n          \"phoneNumber\": \"+50250000001\",\n          \"address\": {\n            \"fullAddress\": \"\",\n            \"coords\": {\n              \"latitude\": 4.592186581553626,\n              \"longitude\": -74.13686065057105\n            }\n          },\n          \"email\": \"alejandra.recinos@gmail.com\"\n        }\n      }\n    ]\n  },\n  \"timestamp\": \"2023-02-03T02:23:51.000Z\",\n  \"driver\": {\n    \"name\": \"Gabriela Recinos\",\n    \"phoneNumber\": \"+50250000002\",\n    \"userId\": null,\n    \"plateNumber\": \"GT-1234\",\n    \"carModel\": \"Toyota\",\n    \"carModelYear\": \"2015\",\n    \"photo\": \"public_URL\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9235ac4d-a9b2-412c-9b84-a64c90987490",
+          "name": "3. Update Status of the order",
+          "request": {
+            "name": "3. Update Status of the order",
+            "description": {},
+            "url": {
+              "path": [
+                "smart-hub",
+                "api",
+                "cencosud",
+                "orders",
+                "states"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"metadata\": {\n    \"orders\": [\n      {\n        \"status\": \"OPEN\",\n        \"inProgressStatus\": \"ENROUTE_TO_DROPOFF\",\n        \"externalOrderId\": \"JMB-v1677506-01\"\n      }\n    ]\n  },\n  \"timestamp\": \"2023-02-03T02:23:51.000Z\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "018bfb74-57b1-4b32-99f1-77c3c445c25a",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "smart-hub",
+                    "api",
+                    "cencosud",
+                    "orders",
+                    "states"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"metadata\": {\n    \"orders\": [\n      {\n        \"status\": \"OPEN\",\n        \"inProgressStatus\": \"ENROUTE_TO_DROPOFF\",\n        \"externalOrderId\": \"JMB-v1677506-01\"\n      }\n    ]\n  },\n  \"timestamp\": \"2023-02-03T02:23:51.000Z\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "04473495-7a9f-457f-ae04-80ea6628ea58",
+          "name": "4. Send Coordinates",
+          "request": {
+            "name": "4. Send Coordinates",
+            "description": {},
+            "url": {
+              "path": [
+                "smart-hub",
+                "api",
+                "cencosud",
+                "coordinates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"coordinates\": {\n    \"latitude\": 4.592186581553626,\n    \"longitude\": -74.13686065057105\n  },\n  \"externalOrderId\": \"JMB-v1677506-01\",\n  \"driverPhoneNumber\": \"+50250000002\",\n  \"timestamp\": \"2023-02-03T02:23:51.000Z\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a3643ba2-cddb-474f-8b29-3f79f182b63d",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "smart-hub",
+                    "api",
+                    "cencosud",
+                    "coordinates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"coordinates\": {\n    \"latitude\": 4.592186581553626,\n    \"longitude\": -74.13686065057105\n  },\n  \"externalOrderId\": \"JMB-v1677506-01\",\n  \"driverPhoneNumber\": \"+50250000002\",\n  \"timestamp\": \"2023-02-03T02:23:51.000Z\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.zubale.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3b2cb9c3-0a11-4181-a57f-679615a27f9d",
+    "name": "Zubale API Documentation for External Notification Handler Live Tracking For Cencosud API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Overview. This document is a developer’s guide and provides the necessary information to integrate your websites and mobile apps with our Zubale API endpoints. In this document some of our API endpoints are discussed, giving their business context and some examples on how to use specific features provided by the endpoints. Basic prior knowledge on JSON, HTTPS and an understanding of software programming is assumed. Integration It's the process to unite with your service automatically in order to provide a connection between your services and Zubale's system to create tasks and update its statuses. It is important to note that this API is serving different customers, thus modifications to it are not feasible. If you have special requirements or needs, please talk to your Sales Account Manager to explore a custom integration. How to start with Zubale? https://en.zubale.com/ Terminology Customer: This is the company that integrates with us Client: This is the person who make an order Zubalero: The person who runs Picking and deliveries Response The Zubale API uses HTTP status codes to indicate the status of the requests. This includes successful and error responses. Success Response Codes HTTP Status Code Description 200 Request successful. 200 User created. Error Response Codes HTTP Status Code Description 500 Internal server error. 409 Format not recognized. 409 Encoding format not recognized. 404 Content not found 401 Unauthorized/Invalid token 400 Bad request.\n\nContact Support:\n Name: Zubale",
+      "type": "text/plain"
+    }
+  }
+}

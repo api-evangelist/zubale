@@ -1,0 +1,139 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Zubale API Documentation for External Notification Handler Product catalog API",
+    "version": "v3"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Product catalog",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create catalog",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.zubale.com/product-catalog/api/v1/catalog/:brand_id",
+            "params": [
+              {
+                "name": "brand_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "JSON object mass creation Based on a JSON array of products, create products massively in our service. brand_id in the path params is an integer value provided by Zubale. Note: each brand can only have 1 existing catalog, which means calling this endpoint again will overwrite your existing data, this includes all product records from all stores . Warning: if you're integrating your stock service with us, make sure to set all products stock values to 0 . Key Value store_id Your store identifier. "
+        },
+        {
+          "info": {
+            "name": "Update catalog",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.zubale.com/product-catalog/api/v1/catalog/:brand_id",
+            "params": [
+              {
+                "name": "brand_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update a given list of products. This endpoint will not overwrite your existing data. Attempting to update an unexisting record won't create it, meaning that if you send a product that isn't on our database will not attempt to insert it. To make sure it exists, please refer to the Get products(s) section brand_id in the path params is an integer value provided value. \"brand_id\", \"store_id\" and \"product_code\" are mandatory fields. Any undeclared, empty strings, zero and null values won't be overw"
+        },
+        {
+          "info": {
+            "name": "Get product(s)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zubale.com/product-catalog/api/v1/brands/:brand_id/products",
+            "params": [
+              {
+                "name": "brand_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a product based on certain query parameters."
+        },
+        {
+          "info": {
+            "name": "Create product",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.zubale.com/product-catalog/api/v1/brands/:brand_id/products",
+            "params": [
+              {
+                "name": "brand_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Creates an array of multiple products at once. This endpoint will not overwrite existing records, but will return products that failed to insert whenever they don't match the expected values. Warning: if you're integrating your stock service with us, make sure to set all products stock values to 0 ."
+        },
+        {
+          "info": {
+            "name": "Update product",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.zubale.com/product-catalog/api/v1/products",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Updates a single product. \"brandId\", \"storeId\", and \"productCode\" are mandatory fields. Any undeclared, empty strings, zero and null values won't be overwritten on the original record."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

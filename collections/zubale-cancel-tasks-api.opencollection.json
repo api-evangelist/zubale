@@ -1,0 +1,76 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Zubale API Documentation for External Notification Handler Cancel tasks API",
+    "version": "v3"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Cancel tasks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Cancel task",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.zubale.com/orders/api/:brandId/cancel",
+            "params": [
+              {
+                "name": "brandId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "This endpoit is used to cancel an order that was previously created. When cancelling an order the process of delivery or picking and deliver will finish This API is use to both service, delivery or picking and delivery Request Atributte Description Datatype Example Note orderId Order identifier String “order_1234_4566” In picking and delivery externalOrderId = customkey In delivery externalOrderId = externalOrderId details Your cancellation reason String “Cancelled by client”, \"Issues with the o"
+        },
+        {
+          "info": {
+            "name": "Cancel task",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.zubale.com/orders/api/:brand_id/cancel",
+            "params": [
+              {
+                "name": "brand_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "This endpoit is used to cancel an order that was previously created. When cancelling an order the process of delivery or picking and deliver will finish This API is use to both service, delivery or picking and delivery Request Atributte Description Datatype Example Note orderId Order identifier String “order_1234_4566” In picking and delivery externalOrderId = customkey In delivery externalOrderId = externalOrderId details Your cancellation reason String “Cancelled by client”, \"Issues with the o"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

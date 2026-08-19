@@ -1,0 +1,138 @@
+{
+  "item": [
+    {
+      "id": "7456318d-816c-4967-b392-c3913e73161c",
+      "name": "API Documentation for External Notification Handler",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f98351f4-e519-436c-a1e9-6e941bcafd90",
+          "name": "Send Event",
+          "request": {
+            "name": "Send Event",
+            "description": {
+              "content": "Send Event This endpoint allows clients to notify their consumers via WhatsApp about order status updates. Allowed Events The following values are allowed for the event field: order_created picking_started picked_out enroute_to_dropoff at_dropoff delivered If you require additional custom events, please contact us to discuss adding them to the system. Note: The required parameters may vary depending on the event type. Each event corresponds to specific message templates and required parameters. Ensure that the request includes the necessary fields for the intended notification. Field Details Field Data Type Mandatory Description Format event String Yes Type of event (e.g., order_created ). Text retailer String Yes Retailer identifier. Text target String Yes Target contact (e.g., phone number). E.164 format orderReference String Yes Unique order reference. Alphanumeric data Object Yes Additional order details. JSON Object supplier.identifier String No Supplier unique identifier. Text supplier.name String No Supplier name. Text countryCode String No Country code of the order. ISO 3166-1 Alpha-2 brandIdentifier String No Identifier of the brand. Alphanumeric storeIdentifier String No ",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "external-notification-handler",
+                "api",
+                "v1",
+                "events"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"retailer\": \"development\",\n  \"supplier\": {\n    \"identifier\": \"22\",\n    \"name\": \"supply\"\n  },\n  \"event\": \"order_created\",\n  \"target\": \"+50241512151\",\n  \"orderReference\": \"v10000-23\",\n  \"countryCode\": \"MX\",\n  \"brandIdentifier\": \"123\",\n  \"storeIdentifier\": \"456\",\n  \"data\": {\n    \"customerName\": \"Wesley López\",\n    \"deliveryDate\": \"2025-02-15\",\n    \"slotStart\": \"13:00\",\n    \"slotEnd\": \"15:00\",\n    \"brandName\": \"Zubale\",\n    \"plateNumber\": \"P123ABC\",\n    \"shopperName\": \"Juan Perez\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "432db28a-6cc6-4f48-95d6-76fa2eb108ae",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external-notification-handler",
+                    "api",
+                    "v1",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"retailer\": \"development\",\n  \"supplier\": {\n    \"identifier\": \"22\",\n    \"name\": \"supply\"\n  },\n  \"event\": \"order_created\",\n  \"target\": \"+50241512151\",\n  \"orderReference\": \"v10000-23\",\n  \"countryCode\": \"MX\",\n  \"brandIdentifier\": \"123\",\n  \"storeIdentifier\": \"456\",\n  \"data\": {\n    \"customerName\": \"Wesley López\",\n    \"deliveryDate\": \"2025-02-15\",\n    \"slotStart\": \"13:00\",\n    \"slotEnd\": \"15:00\",\n    \"brandName\": \"Zubale\",\n    \"plateNumber\": \"P123ABC\",\n    \"shopperName\": \"Juan Perez\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.zubale.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d2e96d99-8625-4bea-89fc-32b93e0093da",
+    "name": "Zubale API Documentation for External Notification Handler API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Overview. This document is a developer’s guide and provides the necessary information to integrate your websites and mobile apps with our Zubale API endpoints. In this document some of our API endpoints are discussed, giving their business context and some examples on how to use specific features provided by the endpoints. Basic prior knowledge on JSON, HTTPS and an understanding of software programming is assumed. Integration It's the process to unite with your service automatically in order to provide a connection between your services and Zubale's system to create tasks and update its statuses. It is important to note that this API is serving different customers, thus modifications to it are not feasible. If you have special requirements or needs, please talk to your Sales Account Manager to explore a custom integration. How to start with Zubale? https://en.zubale.com/ Terminology Customer: This is the company that integrates with us Client: This is the person who make an order Zubalero: The person who runs Picking and deliveries Response The Zubale API uses HTTP status codes to indicate the status of the requests. This includes successful and error responses. Success Response Codes HTTP Status Code Description 200 Request successful. 200 User created. Error Response Codes HTTP Status Code Description 500 Internal server error. 409 Format not recognized. 409 Encoding format not recognized. 404 Content not found 401 Unauthorized/Invalid token 400 Bad request.\n\nContact Support:\n Name: Zubale",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Zubale API Documentation for External Notification Handler Delivery API API",
+    "version": "v3"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Delivery API",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Delivery Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.zubale.com/it/api/v1/:brand_name/pnp_delivery/jobs",
+            "params": [
+              {
+                "name": "brand_name",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Zubale Integration process diagram Description At this endpoint the client will post the order with all the required information. Here you could find the attributes necessary, the structure and values to perform the process optimally. The format is JSON. Payload request structure: Feed Description Datatype Required Examples Notes brandId Given identifier for each company integrated with Zubale String True “florida-store”, ”1021” Maximum 256 characters comment General Comments String False “gener"
+        },
+        {
+          "info": {
+            "name": "Notify Status Change (Customer side)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.zubale.com/integration/notify-status",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Notify Status Change (Customer side) We can inform you about changes in the order status. You need to provide an endpoint to which we can send the below notifications. The optional status will depend on the sales process that you cary out. The following is a list of the statuses that we can notify: Delivery Statuses Status Description Default / Optional TASK_SCHEDULED Indicates the first state when the task was scheduled Indicates when a return occurs and the task is re-queued and it is ready to"
+        },
+        {
+          "info": {
+            "name": "Create Delivery Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.zubale.com/orders/api/pnp_delivery/jobs/sync",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Security scheme type BEARER TOKEN Staging {{BASE_URL}}/api/pnp_delivery/jobs Production {{BASE_URL}}/api/pnp_delivery/jobs At this endpoint the client will post the order with all the required information. Here you could find the attributes necessary, the structure and values to perform the process optimally. The format is JSON. Description Payload request structure: Feed Description Datatype Required Examples Notes brand_ID Given identifier for each company integrated with Zubale String True “f"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

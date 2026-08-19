@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Zubale API Documentation for External Notification Handler API",
+    "version": "v3"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "API Documentation for External Notification Handler",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Send Event",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.zubale.com/external-notification-handler/api/v1/events",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Send Event This endpoint allows clients to notify their consumers via WhatsApp about order status updates. Allowed Events The following values are allowed for the event field: order_created picking_started picked_out enroute_to_dropoff at_dropoff delivered If you require additional custom events, please contact us to discuss adding them to the system. Note: The required parameters may vary depending on the event type. Each event corresponds to specific message templates and required parameters. "
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

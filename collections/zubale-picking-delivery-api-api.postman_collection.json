@@ -1,0 +1,433 @@
+{
+  "item": [
+    {
+      "id": "8ed0e620-593a-4c59-a044-9553e3529180",
+      "name": "Picking & Delivery API",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ffe23efc-3181-4e44-b2b1-c2f1ce0f249a",
+          "name": "Create Picking & Delivery Order",
+          "request": {
+            "name": "Create Picking & Delivery Order",
+            "description": {
+              "content": "Create Picking &amp; Delivery Quest At this endpoint the client will post the order with all the required information. Here you could find the attributes necessary, the structure and values to perform the process optimally. The format is JSON. Security scheme type BEARER TOKEN Staging {{BASE_URL}}/api/pnp_e2e/jobs Production {{BASE_URL}}/api/pnp_e2e/jobs Description Feed Description Datatype Required Examples Notes brand_ID Given identifier for each company integrated with Zubale String True “florida-store”, ”1021” Maximum 256 characters comment General Comments String False “generic” Maximum 256 characters contact_info.address Full address of customer's drop off location.See format address. String True contactInfo.comments General Comments String False “generic” Maximum 256 characters contactInfo.name Full name of client String True “Pedro Perez” Maximum 256 characters contactInfo.phone_number Phone number of client. String True “+50245549959” Struct: + CC NDC SN Max 15 digits CC: Country code (1-3 Digits) NDC: National destination code (Area code) if exists SN: Suscriber number contactInfo.zip_code Zip Code of client. String True “Brazil: 01232-010” “Brazil: 01232-010” dropOffLoc",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orders",
+                "api",
+                "pnp_e2e",
+                "jobs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fc67dee1-d248-4b9b-999f-d3b15e198d84",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    "api",
+                    "pnp_e2e",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d7d47df3-12f1-49ad-87cd-ccf238a6e725",
+          "name": "Notify Status Change",
+          "request": {
+            "name": "Notify Status Change",
+            "description": {
+              "content": "Notify Status Change (Customer side) We can inform you about changes in the order status. Through a JSON format You need to provide an endpoint to which we can send notifications detailed on following table. The optional status will depend on the operational process that you carry out. PICKING STATUSES The following is a list of the statuses that we could notify: Status Description Default / Optional TASK_SCHEDULED Indicates the first state when the task was scheduled Indicates when a return occurs and the task is re-queued and it is ready to be taken or cancelled. DEFAULT TASK_ASSIGNED Indicates the moment when the Zubalero takes the order. DEFAULT PICKING_STARTED This state occurs when the zubalero takes the task and reads the instructions to start collecting the products. DEFAULT PRODUCT_ADDED Indicates the moment when Zubalero added to cart the first product. (and only for the first product) DEFAULT PRODUCT_SCANNED Indicates the moment when Zubalero scanned the first product OPTIONAL CALLED_CUSTOMER Indicates the moment when zubalero calls the client to make a replace, add or remove a product. Also this status is sent when zubalero arrives at the client´s address. OPTIONAL AT_C",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "integration",
+                "notify_status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e3b6bbe7-7e5e-4946-a4ef-0e5bfa713982",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "integration",
+                    "notify_status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9c384777-51d7-458e-af15-55645a33d97d",
+          "name": "Get Product (Customer Side)",
+          "request": {
+            "name": "Get Product (Customer Side)",
+            "description": {
+              "content": "Get Product (Customer side) This is an endpoint you provide as a customer, in order for Zubale to retrieve information about a given product. The most common use case happens when a consumer requests a product replacement (product out of stock, difference in units, etc.), in which case Zubale asks you to provide us with details of the new product. Response 200OK Feed Description Datatype Required Example Notes productId Customer defined product id. internal product identifier String True “BEB_LAC_ENT” Maximum 256 characteres thumbnailUrl Public Product image URL in thumbnail format. In case of don´t have it, send empty attribute String True \" https://galletasImage.com/7441001700065.jpg Maximum 256 characters imageUrl Public Product image URL. In case of don´t have it, send empty attribute String True https://galletasImage.com/7441001700065.jpg Maximum 256 characters unit Product unit (units, kg, etc.) String True “PCE” {“PCE” “KGM”} upc Product upc or SKU EAN 13. MUST TO BE THE SAME THAN ITEMID String True \"978020137962” shortName Product short name it can be the same than longtName String True \"Galletas para perros\" Maximum 256 characters longName Product long name it can be the s",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "integration",
+                "scanBarCode"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "88e3f0d3-6032-4f1f-a4fa-0c17bc3ed1b6",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "integration",
+                    "scanBarCode"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c0ecd186-fd91-468f-810a-2eae2585e854",
+          "name": "Confirm Order",
+          "request": {
+            "name": "Confirm Order",
+            "description": {
+              "content": "Confirm order Once the order picking has been completed, we send you the final order, so you can perform any bookkeeping, calculation or any other processing on your end. You may receive the order unchanged from what the consumer originally ordered, or it may have changed (added/replaced/deleted items), based on product availability at the store The only relevant field for you, should be each item's quantity. Be aware of new/replaced/removed items (if any). Attribute Description Required Datatype Examples Notes requestId ID that is recognizable to your operations Must to be the same than customkey True String \"REQU-add90e3b-f086-439f-9e63-b25ac55b287c\" Must to be the same than customkey customkey ID that is recognizable to your operations Must to be the same than requestId True String \"REQU-add90e3b-f086-439f-9e63-b25ac55b287c\" Must to be the same than requestID storeID ID of the store where the task is being performed. True String \"123\" Maximum 32 characters status Order status. Always has to be OPEN True String “OPEN” {”OPEN”} deliveryType Customer defined type of delivery. True String \"DELIVERY” {“DELIVERY”} payment Payment information True Object payment.paymentMode It is the m",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "integration",
+                "finalOrder"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"address\": {\n    \"address\": \"Luis Arias Schereiber - 345\",\n    \"addressReference\": \"\",\n    \"city\": \"Lima\",\n    \"country\": \"PER\",\n    \"externalNumber\": \"345\",\n    \"id\": 0,\n    \"internalNumber\": \"\",\n    \"latitude\": -12.1210855,\n    \"longitude\": -77.0104072,\n    \"neighborhood\": \"Miraflores\",\n    \"postalCode\": \"150122\",\n    \"state\": \"LIMA\",\n    \"street\": \"Luis Arias Schereiber\"\n  },\n  \"comment\": \"null - null\",\n  \"consumer\": {\n    \"id\": \"1342\",\n    \"user\": {\n      \"email\": \"acllsis@gmail.com\",\n      \"person\": {\n        \"birthdate\": \"1969-12-31T00:00:00.000Z\",\n        \"contact\": {\n          \"ext\": \"0\",\n          \"mean\": 1,\n          \"value\": \"+51911111111\"\n        },\n        \"gender\": \"M\",\n        \"lastname\": \"cenco\",\n        \"name\": \"prueba\",\n        \"secondname\": \"\"\n      }\n    }\n  },\n  \"contactPreferences\": \"\",\n  \"customkey\": \"v533623wofq-01\",\n  \"deliveryType\": \"ENTREGA\",\n  \"originalOrderRequest\": {\n    \"deliveryInstructions\": \"null\",\n    \"orderDate\": \"2021-06-30T00:00:00.000\",\n    \"orderRequestItems\": [\n      {\n        \"comments\": \"\",\n        \"discount\": 0,\n        \"itemId\": \"166885\",\n        \"product\": {\n          \"aisle\": \"\",\n          \"imageUrl\": \"\",\n          \"longName\": \"\",\n          \"pesable\": false,\n          \"price\": 0,\n          \"productId\": \"187743000013\",\n          \"restricted\": true,\n          \"shortName\": \"\",\n          \"thumbnailUrl\": \"\",\n          \"unit\": \"un\",\n          \"upc\": \"166885\"\n        },\n        \"quantity\": 2,\n        \"reference\": null,\n        \"status\": \"PERSISTENT\",\n        \"totalPrice\": 0,\n        \"unitPrice\": 0\n      }\n    ],\n    \"orderShipmentCost\": 0,\n    \"orderTotalCost\": 63.8\n  },\n  \"payment\": {\n    \"payOnDeliveryType\": \"CARD\",\n    \"paymentMode\": \"PAY_ON_DELIVERY\",\n    \"paymentStatus\": \"\"\n  },\n  \"phone1\": \"+51911111111\",\n  \"phone2\": \"\",\n  \"recipient1\": \"Aaaaaa Cccccccc\",\n  \"recipient2\": \"\",\n  \"requestId\": \"ORDER_ID\",\n  \"status\": \"READY\",\n  \"storeId\": \"123\",\n  \"timeSlot\": {\n    \"idStore\": \"123\",\n    \"serviceType\": 0,\n    \"timeFrom\": \"2021-07-10T14:00:00.000\",\n    \"timeTo\": \"2021-07-10T17:00:00.000\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fd46913d-cd4b-4055-aafb-0fabe4844d49",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "integration",
+                    "finalOrder"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"address\": {\n    \"address\": \"Luis Arias Schereiber - 345\",\n    \"addressReference\": \"\",\n    \"city\": \"Lima\",\n    \"country\": \"PER\",\n    \"externalNumber\": \"345\",\n    \"id\": 0,\n    \"internalNumber\": \"\",\n    \"latitude\": -12.1210855,\n    \"longitude\": -77.0104072,\n    \"neighborhood\": \"Miraflores\",\n    \"postalCode\": \"150122\",\n    \"state\": \"LIMA\",\n    \"street\": \"Luis Arias Schereiber\"\n  },\n  \"comment\": \"null - null\",\n  \"consumer\": {\n    \"id\": \"1342\",\n    \"user\": {\n      \"email\": \"acllsis@gmail.com\",\n      \"person\": {\n        \"birthdate\": \"1969-12-31T00:00:00.000Z\",\n        \"contact\": {\n          \"ext\": \"0\",\n          \"mean\": 1,\n          \"value\": \"+51911111111\"\n        },\n        \"gender\": \"M\",\n        \"lastname\": \"cenco\",\n        \"name\": \"prueba\",\n        \"secondname\": \"\"\n      }\n    }\n  },\n  \"contactPreferences\": \"\",\n  \"customkey\": \"v533623wofq-01\",\n  \"deliveryType\": \"ENTREGA\",\n  \"originalOrderRequest\": {\n    \"deliveryInstructions\": \"null\",\n    \"orderDate\": \"2021-06-30T00:00:00.000\",\n    \"orderRequestItems\": [\n      {\n        \"comments\": \"\",\n        \"discount\": 0,\n        \"itemId\": \"166885\",\n        \"product\": {\n          \"aisle\": \"\",\n          \"imageUrl\": \"\",\n          \"longName\": \"\",\n          \"pesable\": false,\n          \"price\": 0,\n          \"productId\": \"187743000013\",\n          \"restricted\": true,\n          \"shortName\": \"\",\n          \"thumbnailUrl\": \"\",\n          \"unit\": \"un\",\n          \"upc\": \"166885\"\n        },\n        \"quantity\": 2,\n        \"reference\": null,\n        \"status\": \"PERSISTENT\",\n        \"totalPrice\": 0,\n        \"unitPrice\": 0\n      }\n    ],\n    \"orderShipmentCost\": 0,\n    \"orderTotalCost\": 63.8\n  },\n  \"payment\": {\n    \"payOnDeliveryType\": \"CARD\",\n    \"paymentMode\": \"PAY_ON_DELIVERY\",\n    \"paymentStatus\": \"\"\n  },\n  \"phone1\": \"+51911111111\",\n  \"phone2\": \"\",\n  \"recipient1\": \"Aaaaaa Cccccccc\",\n  \"recipient2\": \"\",\n  \"requestId\": \"ORDER_ID\",\n  \"status\": \"READY\",\n  \"storeId\": \"123\",\n  \"timeSlot\": {\n    \"idStore\": \"123\",\n    \"serviceType\": 0,\n    \"timeFrom\": \"2021-07-10T14:00:00.000\",\n    \"timeTo\": \"2021-07-10T17:00:00.000\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.zubale.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "07c8b753-31d3-4b3a-a2d5-48d97d82a628",
+    "name": "Zubale API Documentation for External Notification Handler Picking & Delivery API API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Overview. This document is a developer’s guide and provides the necessary information to integrate your websites and mobile apps with our Zubale API endpoints. In this document some of our API endpoints are discussed, giving their business context and some examples on how to use specific features provided by the endpoints. Basic prior knowledge on JSON, HTTPS and an understanding of software programming is assumed. Integration It's the process to unite with your service automatically in order to provide a connection between your services and Zubale's system to create tasks and update its statuses. It is important to note that this API is serving different customers, thus modifications to it are not feasible. If you have special requirements or needs, please talk to your Sales Account Manager to explore a custom integration. How to start with Zubale? https://en.zubale.com/ Terminology Customer: This is the company that integrates with us Client: This is the person who make an order Zubalero: The person who runs Picking and deliveries Response The Zubale API uses HTTP status codes to indicate the status of the requests. This includes successful and error responses. Success Response Codes HTTP Status Code Description 200 Request successful. 200 User created. Error Response Codes HTTP Status Code Description 500 Internal server error. 409 Format not recognized. 409 Encoding format not recognized. 404 Content not found 401 Unauthorized/Invalid token 400 Bad request.\n\nContact Support:\n Name: Zubale",
+      "type": "text/plain"
+    }
+  }
+}

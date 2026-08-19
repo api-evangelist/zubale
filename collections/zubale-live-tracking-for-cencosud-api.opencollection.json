@@ -1,0 +1,84 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Zubale API Documentation for External Notification Handler Live Tracking For Cencosud API",
+    "version": "v3"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Live Tracking For Cencosud",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "1. Create Credential Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.zubale.com/oauth2/token",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "1. Create Credential Token"
+        },
+        {
+          "info": {
+            "name": "2. Create Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.zubale.com/smart-hub/api/cencosud/order",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "2. Create Order"
+        },
+        {
+          "info": {
+            "name": "3. Update Status of the order",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.zubale.com/smart-hub/api/cencosud/orders/states",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "3. Update Status of the order"
+        },
+        {
+          "info": {
+            "name": "4. Send Coordinates",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.zubale.com/smart-hub/api/cencosud/coordinates",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "4. Send Coordinates"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,50 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Zubale API Documentation for External Notification Handler External outbound API",
+    "version": "v3"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "External outbound",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Multiple product campaign - Catalog",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.zubale.com/hermes/integrations/:iINTEGRATION_NAME/conversations/messages",
+            "params": [
+              {
+                "name": "iINTEGRATION_NAME",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Send multiple product items as a WhatsApp catalog campaign message. Required headers: Content-Type: application/json Authorization: Bearer {{jwtToken}} Use to showcase multiple products in a single outbound campaign. Request body JSON structure: target (string, required): Recipient phone number, including country code. templateName (string, required): Name of the WhatsApp campaign/template for multiple products. languageCode (string, required): Language/locale code for the template (for example,"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

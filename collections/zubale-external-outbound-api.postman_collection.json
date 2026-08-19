@@ -1,0 +1,164 @@
+{
+  "item": [
+    {
+      "id": "2676977a-e467-4090-a0a7-c8c14158c345",
+      "name": "External outbound",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2529e4e1-b0ae-4982-8655-874031ba6496",
+          "name": "Multiple product campaign - Catalog",
+          "request": {
+            "name": "Multiple product campaign - Catalog",
+            "description": {
+              "content": "Send multiple product items as a WhatsApp catalog campaign message. Required headers: Content-Type: application/json Authorization: Bearer {{jwtToken}} Use to showcase multiple products in a single outbound campaign. Request body JSON structure: target (string, required): Recipient phone number, including country code. templateName (string, required): Name of the WhatsApp campaign/template for multiple products. languageCode (string, required): Language/locale code for the template (for example, es , en_US ). flow (string, optional): Static flow identifier provided by Zubale. payload (object, required): Template variables and catalog configuration. body (array, required): Template components for the message body and CTA button. Discount text component: parameters[].text contains values such as discount percentage. Catalog button component ( type: button , sub_type: mpm ): parameters[].action.sections[].title is the section title shown in the catalog. product_items[] is an array of catalog product entries. Each item has product_retailer_id (string, required): Identifier of the product in your catalog. metadata (object, required): Campaign and routing metadata. node (string, optional",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "hermes",
+                "integrations",
+                ":iINTEGRATION_NAME",
+                "conversations",
+                "messages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "iINTEGRATION_NAME",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"target\": \"+57301000000\",\n  \"templateName\": \"example_multiple_products_template\",\n  \"languageCode\": \"es\",\n  \"payload\": {\n    \"body\": [\n      {\n        \"type\": \"body\",\n        \"parameters\": [\n          {\n            \"type\": \"text\",\n            \"text\": \"30%\"\n          }\n        ]\n      },\n      {\n        \"type\": \"button\",\n        \"sub_type\": \"mpm\",\n        \"index\": 0,\n        \"parameters\": [\n          {\n            \"type\": \"action\",\n            \"action\": {\n              \"sections\": [\n                {\n                  \"title\": \"Productos encontrados\",\n                  \"product_items\": [\n                    {\n                      \"product_retailer_id\": \"22222\"\n                    },\n                    {\n                      \"product_retailer_id\": \"CVC\"\n                    },\n                    {\n                      \"product_retailer_id\": \" 33333\"\n                    }\n                  ]\n                }\n              ]\n            }\n          }\n        ]\n      }\n    ]\n  },\n  \"metadata\": {\n    \"promotionCode\": \"PROMOTION000\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "67d4400a-53cb-4638-89d2-4220177469f9",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hermes",
+                    "integrations",
+                    ":iINTEGRATION_NAME",
+                    "conversations",
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "iINTEGRATION_NAME",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"target\": \"+57301000000\",\n  \"templateName\": \"example_multiple_products_template\",\n  \"languageCode\": \"es\",\n  \"payload\": {\n    \"body\": [\n      {\n        \"type\": \"body\",\n        \"parameters\": [\n          {\n            \"type\": \"text\",\n            \"text\": \"30%\"\n          }\n        ]\n      },\n      {\n        \"type\": \"button\",\n        \"sub_type\": \"mpm\",\n        \"index\": 0,\n        \"parameters\": [\n          {\n            \"type\": \"action\",\n            \"action\": {\n              \"sections\": [\n                {\n                  \"title\": \"Productos encontrados\",\n                  \"product_items\": [\n                    {\n                      \"product_retailer_id\": \"22222\"\n                    },\n                    {\n                      \"product_retailer_id\": \"CVC\"\n                    },\n                    {\n                      \"product_retailer_id\": \" 33333\"\n                    }\n                  ]\n                }\n              ]\n            }\n          }\n        ]\n      }\n    ]\n  },\n  \"metadata\": {\n    \"promotionCode\": \"PROMOTION000\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.zubale.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "dc3b0460-625e-4ae8-9a04-d256d3e83df5",
+    "name": "Zubale API Documentation for External Notification Handler External outbound API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Overview. This document is a developer’s guide and provides the necessary information to integrate your websites and mobile apps with our Zubale API endpoints. In this document some of our API endpoints are discussed, giving their business context and some examples on how to use specific features provided by the endpoints. Basic prior knowledge on JSON, HTTPS and an understanding of software programming is assumed. Integration It's the process to unite with your service automatically in order to provide a connection between your services and Zubale's system to create tasks and update its statuses. It is important to note that this API is serving different customers, thus modifications to it are not feasible. If you have special requirements or needs, please talk to your Sales Account Manager to explore a custom integration. How to start with Zubale? https://en.zubale.com/ Terminology Customer: This is the company that integrates with us Client: This is the person who make an order Zubalero: The person who runs Picking and deliveries Response The Zubale API uses HTTP status codes to indicate the status of the requests. This includes successful and error responses. Success Response Codes HTTP Status Code Description 200 Request successful. 200 User created. Error Response Codes HTTP Status Code Description 500 Internal server error. 409 Format not recognized. 409 Encoding format not recognized. 404 Content not found 401 Unauthorized/Invalid token 400 Bad request.\n\nContact Support:\n Name: Zubale",
+      "type": "text/plain"
+    }
+  }
+}

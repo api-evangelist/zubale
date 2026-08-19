@@ -1,0 +1,92 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Zubale API Documentation for External Notification Handler Picking & Delivery API API",
+    "version": "v3"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Picking & Delivery API",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Picking & Delivery Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.zubale.com/orders/api/pnp_e2e/jobs",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create Picking &amp; Delivery Quest At this endpoint the client will post the order with all the required information. Here you could find the attributes necessary, the structure and values to perform the process optimally. The format is JSON. Security scheme type BEARER TOKEN Staging {{BASE_URL}}/api/pnp_e2e/jobs Production {{BASE_URL}}/api/pnp_e2e/jobs Description Feed Description Datatype Required Examples Notes brand_ID Given identifier for each company integrated with Zubale String True “fl"
+        },
+        {
+          "info": {
+            "name": "Notify Status Change",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.zubale.com/integration/notify_status",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Notify Status Change (Customer side) We can inform you about changes in the order status. Through a JSON format You need to provide an endpoint to which we can send notifications detailed on following table. The optional status will depend on the operational process that you carry out. PICKING STATUSES The following is a list of the statuses that we could notify: Status Description Default / Optional TASK_SCHEDULED Indicates the first state when the task was scheduled Indicates when a return occ"
+        },
+        {
+          "info": {
+            "name": "Get Product (Customer Side)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zubale.com/integration/scanBarCode",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get Product (Customer side) This is an endpoint you provide as a customer, in order for Zubale to retrieve information about a given product. The most common use case happens when a consumer requests a product replacement (product out of stock, difference in units, etc.), in which case Zubale asks you to provide us with details of the new product. Response 200OK Feed Description Datatype Required Example Notes productId Customer defined product id. internal product identifier String True “BEB_LA"
+        },
+        {
+          "info": {
+            "name": "Confirm Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.zubale.com/integration/finalOrder",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Confirm order Once the order picking has been completed, we send you the final order, so you can perform any bookkeeping, calculation or any other processing on your end. You may receive the order unchanged from what the consumer originally ordered, or it may have changed (added/replaced/deleted items), based on product availability at the store The only relevant field for you, should be each item's quantity. Be aware of new/replaced/removed items (if any). Attribute Description Required Datatyp"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
