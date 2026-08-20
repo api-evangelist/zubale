@@ -29,6 +29,9 @@ created: '2026-07-17'
 modified: '2026-07-17'
 tags:
 - Company
+- E-Commerce
+tags_raw:
+- Company
 - Ecommerce
 apis:
 - aid: zubale:zubale-api-documentation-for-external-notification-handler-api
@@ -86,6 +89,8 @@ apis:
   name: Zubale Product catalog API
   description: The Product catalog API from Zubale — 3 operation(s) for product catalog.
   tags:
+  - Product Catalog
+  tags_raw:
   - Product catalog
   properties:
   - type: OpenAPI
