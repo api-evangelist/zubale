@@ -100,7 +100,7 @@ apis:
   name: Zubale Product catalog API
   description: The Product catalog API from Zubale — 3 operation(s) for product catalog.
   tags:
-  - Product catalog
+  - Product Catalog
   tags_raw:
   - Product catalog
   properties:
