@@ -1,8 +1,8 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Zubale API Documentation for External Notification Handler Delivery API API
+  title: Zubale Delivery API
   version: v3
-  description: 'Overview. This document is a developer’s guide and provides the necessary information to integrate your websites and mobile apps with our Zubale API endpoints. In this document some of our API endpoints are discussed, giving their business context and some examples on how to use specific features provided by the endpoints. Basic prior knowledge on JSON, HTTPS and an understanding of software programming is assumed. Integration It''s the process to unite with your service automatically in order to provide a connection between your services and Zubale''s system to create tasks and update its statuses. It is important to note that this API is serving different customers, thus modifications to it are not feasible. If you have special requirements or needs, please talk to your Sales Account Manager to explore a custom integration. How to start with Zubale? https://en.zubale.com/ Terminology Customer: This is the company that integrates with us Client: This is the person who make an order Zubalero: The person who runs Picking and deliveries Response The Zubale API uses HTTP status codes to indicate the status of the requests. This includes successful and error responses. Success Response Codes HTTP Status Code Description 200 Request successful. 200 User created. Error Response Codes HTTP Status Code Description 500 Internal server error. 409 Format not recognized. 409 Encoding format not recognized. 404 Content not found 401 Unauthorized/Invalid token 400 Bad request.'
+  description: Overview.
   contact:
     name: Zubale
     url: https://developers.zubale.com/

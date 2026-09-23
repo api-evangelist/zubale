@@ -1,14 +1,7 @@
 {
   "provider": "zubale",
   "sources": [
-    "zubale-api-documentation-for-external-notification-handler-api-openapi.yml",
-    "zubale-cancel-tasks-api-openapi.yml",
-    "zubale-delivery-api-api-openapi.yml",
-    "zubale-external-outbound-api-openapi.yml",
-    "zubale-live-tracking-for-cencosud-api-openapi.yml",
-    "zubale-picking-delivery-api-api-openapi.yml",
-    "zubale-product-catalog-api-openapi.yml",
-    "zubale-webhook-payload-structure-for-order-notification-api-openapi.yml"
+    "_original/zubale-openapi.yml"
   ],
   "outputs": [
     "zubale-api-documentation-for-external-notification-handler-api-openapi.yml",
@@ -23,6 +16,27 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "zubale-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "zubale-openapi.yml: declared missing tag: API Documentation for External Notification Handler",
+    "zubale-openapi.yml: declared missing tag: Cancel tasks",
+    "zubale-openapi.yml: declared missing tag: Delivery API",
+    "zubale-openapi.yml: declared missing tag: External outbound",
+    "zubale-openapi.yml: declared missing tag: Live Tracking For Cencosud",
+    "zubale-openapi.yml: declared missing tag: Picking & Delivery API",
+    "zubale-openapi.yml: declared missing tag: Product catalog",
+    "zubale-openapi.yml: declared missing tag: Webhook: Payload Structure for Order Notification",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "zubale-api-documentation-for-external-notification-handler-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "zubale-cancel-tasks-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "zubale-delivery-api-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "zubale-external-outbound-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "zubale-live-tracking-for-cencosud-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "zubale-picking-delivery-api-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "zubale-product-catalog-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "zubale-webhook-payload-structure-for-order-notification-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
