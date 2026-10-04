@@ -1,0 +1,36 @@
+slug: zubale
+provider: Zubale
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 2
+edges:
+- tag: Picking & Delivery API
+  spec_file: zubale-picking-delivery-api-api-openapi.yml
+  capability_id: BC-520.40
+  capability_id_l1: BC-520
+  capability_name: Order Fulfilment Management
+  confidence: 0.75
+  evidence: POST /orders/api/pnp_e2e/jobs createPickingDeliveryOrder Create Picking & Delivery Order
+  reason: Operations create and confirm picking-and-delivery orders with status notification — order fulfilment
+    orchestration in a retail/ecommerce supply chain. Specific sub-capability of order fulfilment fits;
+    some ambiguity with logistics operations.
+- tag: Live Tracking For Cencosud
+  spec_file: zubale-live-tracking-for-cencosud-api-openapi.yml
+  capability_id: BC-520.50
+  capability_id_l1: BC-520
+  capability_name: Logistics Operations Management
+  confidence: 0.7
+  evidence: POST /smart-hub/api/cencosud/order  "Create Order"; PUT /smart-hub/api/cencosud/orders/states  "Update
+    Status of the order"; POST /smart-hub/api/cencosud/coordinates  "Send Coordinates"
+  reason: Order creation plus status updates and GPS coordinate streaming for live delivery tracking is
+    transport/logistics execution for a retail client. The OAuth token endpoint is incidental plumbing
+    within the same tag.

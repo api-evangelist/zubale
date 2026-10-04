@@ -119,6 +119,9 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: CapabilityMap
+  url: capabilities/zubale-capability-edges.yml
+  name: Zubale Business Capability Map
 - type: X-MCPServerCandidate
   url: mcp/zubale-mcp.yml
   note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate
