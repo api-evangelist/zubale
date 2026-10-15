@@ -1,10 +1,51 @@
-generated: '2026-07-21'
-method: derived
-source: openapi/zubale-openapi.yml
+generated: '2026-10-14'
+method: none
+source: openapi/zubale-api-documentation-for-external-notification-handler-api-openapi.yml,
+  openapi/zubale-cancel-tasks-api-openapi.yml, openapi/zubale-delivery-api-api-openapi.yml,
+  openapi/zubale-external-outbound-api-openapi.yml, openapi/zubale-live-tracking-for-cencosud-api-openapi.yml,
+  openapi/zubale-picking-delivery-api-api-openapi.yml, openapi/zubale-product-catalog-api-openapi.yml,
+  openapi/zubale-webhook-payload-structure-for-order-notification-api-openapi.yml
 schemes:
 - name: oauth2
-  source: openapi/zubale-openapi.yml
+  source: openapi/zubale-api-documentation-for-external-notification-handler-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.zubale.com/oauth2/token
+- name: oauth2
+  source: openapi/zubale-cancel-tasks-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.zubale.com/oauth2/token
+- name: oauth2
+  source: openapi/zubale-delivery-api-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.zubale.com/oauth2/token
+- name: oauth2
+  source: openapi/zubale-external-outbound-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.zubale.com/oauth2/token
+- name: oauth2
+  source: openapi/zubale-live-tracking-for-cencosud-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.zubale.com/oauth2/token
+- name: oauth2
+  source: openapi/zubale-picking-delivery-api-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.zubale.com/oauth2/token
+- name: oauth2
+  source: openapi/zubale-product-catalog-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.zubale.com/oauth2/token
+- name: oauth2
+  source: openapi/zubale-webhook-payload-structure-for-order-notification-api-openapi.yml
   flows:
   - flow: clientCredentials
     tokenUrl: https://api.zubale.com/oauth2/token
 scopes: []
+note: The OAuth2 security scheme(s) in the OpenAPI declare no scopes, and no security requirement
+  references one.
