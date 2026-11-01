@@ -66,4 +66,134 @@
 
 Zubale is a company surfaced as a portfolio company of felicis, qed-investors and added to the API Evangelist network as a stub for enrichment. Sector: ecommerce. This profile is a lead awaiting the enrichment pipeline.
 
-Backed by: felicis, qed-investors — https://zubale.com
+**Areas:** Company · E-Commerce
+
+## Zubale on APIs.io
+
+Everything profiled for Zubale is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/zubale/](https://apis.io/providers/zubale/)** — or go straight to one of the APIs or properties below.
+
+### APIs (8)
+
+- [Zubale API Documentation for External Notification Handler API](https://apis.io/apis/zubale/zubale-api-documentation-for-external-notification-handler-api/) — The API Documentation for External Notification Handler API from Zubale — 1 operation(s) for api documentation for external notification handler.
+- [Zubale Cancel tasks API](https://apis.io/apis/zubale/zubale-cancel-tasks-api/) — The Cancel tasks API from Zubale — 2 operation(s) for cancel tasks.
+- [Zubale Delivery API](https://apis.io/apis/zubale/zubale-delivery-api-api/) — The Delivery API API from Zubale — 3 operation(s) for delivery api.
+- [Zubale External outbound API](https://apis.io/apis/zubale/zubale-external-outbound-api/) — The External outbound API from Zubale — 1 operation(s) for external outbound.
+- [Zubale Live Tracking For Cencosud API](https://apis.io/apis/zubale/zubale-live-tracking-for-cencosud-api/) — The Live Tracking For Cencosud API from Zubale — 4 operation(s) for live tracking for cencosud.
+- [Zubale Picking & Delivery API](https://apis.io/apis/zubale/zubale-picking-delivery-api-api/) — The Picking & Delivery API API from Zubale — 4 operation(s) for picking & delivery api.
+- [Zubale Product catalog API](https://apis.io/apis/zubale/zubale-product-catalog-api/) — The Product catalog API from Zubale — 3 operation(s) for product catalog.
+- [Zubale Webhook: Payload Structure for Order Notification API](https://apis.io/apis/zubale/zubale-webhook-payload-structure-for-order-notification-api/) — The Webhook: Payload Structure for Order Notification API from Zubale — 1 operation(s) for webhook: payload structure for order notification.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### AsyncAPI (1)
+
+Event-driven and webhook contracts.
+
+- [Zubale Webhooks](https://apis.io/asyncapis/zubale/zubale-webhooks/)
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [zubale](https://apis.io/servers/zubale/zubale/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Zubale Agentic Access](https://apis.io/agentic-access/zubale/zubale-agentic-access/)
+
+#### Collections (8)
+
+Postman and Open Collection request collections.
+
+- [Zubale API Documentation for External Notification Handler API](https://apis.io/collections/zubale/open-zubale-api-documentation-for-external-notification-handler-api/)
+- [Zubale API Documentation for External Notification Handler Cancel tasks API](https://apis.io/collections/zubale/open-zubale-cancel-tasks-api/)
+- [Zubale API Documentation for External Notification Handler Delivery API API](https://apis.io/collections/zubale/open-zubale-delivery-api-api/)
+- [Zubale API Documentation for External Notification Handler External outbound API](https://apis.io/collections/zubale/open-zubale-external-outbound-api/)
+- [Zubale API Documentation for External Notification Handler Live Tracking For Cencosud API](https://apis.io/collections/zubale/open-zubale-live-tracking-for-cencosud-api/)
+- [Zubale API Documentation for External Notification Handler Picking & Delivery API API](https://apis.io/collections/zubale/open-zubale-picking-delivery-api-api/)
+- [Zubale API Documentation for External Notification Handler Product catalog API](https://apis.io/collections/zubale/open-zubale-product-catalog-api/)
+- [Zubale API Documentation for External Notification Handler Webhook: Payload Structure for Order Notification API](https://apis.io/collections/zubale/open-zubale-webhook-payload-structure-for-order-notification-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Zubale Openapi Overlay](https://apis.io/overlays/zubale/zubale-openapi-overlay/)
+
+#### Security (4)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Zubale Authentication](https://apis.io/security/zubale/zubale-authentication/)
+- [Zubale Domain Security](https://apis.io/security/zubale/zubale-domain-security/)
+- [Zubale Trust Center](https://apis.io/security/zubale/zubale-trust-center/)
+- [Zubale Vulnerability Disclosure](https://apis.io/security/zubale/zubale-vulnerability-disclosure/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Zubale Scopes](https://apis.io/scopes/zubale/zubale-scopes/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://zubale.com)
+
+## API Evangelist rating
+
+**Kin Score 12.2** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 46.4 |
+| Contract quality | 8.1 |
+| Contract governance | 4.5 |
+| Operational transparency | 0.0 |
+| Developer ergonomics | 11.9 |
+| Access clarity | 7.9 |
+
+**Agent readiness 28.3** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | — |
+| Event Surface Described | yes |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 26.5** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/zubale/](https://apis.io/providers/zubale/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Zubale: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/zubale/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
